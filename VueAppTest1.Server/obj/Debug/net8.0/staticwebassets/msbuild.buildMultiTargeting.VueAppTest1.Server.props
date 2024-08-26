@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\VueAppTest1.Server.props" />
+</Project>

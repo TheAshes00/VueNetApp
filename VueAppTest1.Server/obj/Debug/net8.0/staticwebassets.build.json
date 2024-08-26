@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "Hy5mbY7P0Lks5Q+4OMMKps+55p80KnticUmQeRDhepI=",
+  "Source": "VueAppTest1Back",
+  "BasePath": "_content/VueAppTest1Back",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\vueapptest1.client\\vueapptest1Front.esproj",
+      "Version": 2,
+      "Source": "vueapptest1Front",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
