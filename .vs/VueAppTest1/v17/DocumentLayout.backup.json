@@ -1,29 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\",
+  "WorkspaceRootPath": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\source\\repos\\vueapptest1\\vueapptest1.server\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\onedrive\\documentos\\gitprojects\\vueapptest1\\vueapptest1.server\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|solutionrelative:vueapptest1.server\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\source\\repos\\vueapptest1\\vueapptest1.server\\support\\acentacademicentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\onedrive\\documentos\\gitprojects\\vueapptest1\\vueapptest1.server\\support\\acentacademicentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|solutionrelative:vueapptest1.server\\support\\acentacademicentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\source\\repos\\vueapptest1\\vueapptest1.server\\support\\stustudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\onedrive\\documentos\\gitprojects\\vueapptest1\\vueapptest1.server\\support\\stustudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|solutionrelative:vueapptest1.server\\support\\stustudent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\source\\repos\\vueapptest1\\vueapptest1.server\\dto\\student\\getacagetacademicentitiesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\onedrive\\documentos\\gitprojects\\vueapptest1\\vueapptest1.server\\dto\\student\\getacagetacademicentitiesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|solutionrelative:vueapptest1.server\\dto\\student\\getacagetacademicentitiesdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\source\\repos\\vueapptest1\\vueapptest1.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\onedrive\\documentos\\gitprojects\\vueapptest1\\vueapptest1.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|solutionrelative:vueapptest1.server\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\source\\repos\\vueapptest1\\vueapptest1.server\\dao\\studaostudentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|c:\\users\\ferna\\onedrive\\documentos\\gitprojects\\vueapptest1\\vueapptest1.server\\dao\\studaostudentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{14E1B5ED-9364-4B71-9335-74CA084DD747}|VueAppTest1.Server\\VueAppTest1Back.csproj|solutionrelative:vueapptest1.server\\dao\\studaostudentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -40,63 +40,59 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "AcentAcademicEntity.cs",
-              "DocumentMoniker": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Support\\AcentAcademicEntity.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Support\\AcentAcademicEntity.cs",
               "RelativeDocumentMoniker": "VueAppTest1.Server\\Support\\AcentAcademicEntity.cs",
-              "ToolTip": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Support\\AcentAcademicEntity.cs",
+              "ToolTip": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Support\\AcentAcademicEntity.cs",
               "RelativeToolTip": "VueAppTest1.Server\\Support\\AcentAcademicEntity.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAowCwAAAB4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T07:48:06.024Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-26T07:48:06.024Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "GetacaGetAcademicEntitiesDto.cs",
-              "DocumentMoniker": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\DTO\\Student\\GetacaGetAcademicEntitiesDto.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\DTO\\Student\\GetacaGetAcademicEntitiesDto.cs",
               "RelativeDocumentMoniker": "VueAppTest1.Server\\DTO\\Student\\GetacaGetAcademicEntitiesDto.cs",
-              "ToolTip": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\DTO\\Student\\GetacaGetAcademicEntitiesDto.cs",
+              "ToolTip": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\DTO\\Student\\GetacaGetAcademicEntitiesDto.cs",
               "RelativeToolTip": "VueAppTest1.Server\\DTO\\Student\\GetacaGetAcademicEntitiesDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-26T07:19:37.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-26T07:19:37.058Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Controllers\\WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "VueAppTest1.Server\\Controllers\\WeatherForecastController.cs",
-              "ToolTip": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Controllers\\WeatherForecastController.cs",
               "RelativeToolTip": "VueAppTest1.Server\\Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAYwC0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T08:03:53.284Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T08:03:53.284Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "StuStudent.cs",
-              "DocumentMoniker": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Support\\StuStudent.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Support\\StuStudent.cs",
               "RelativeDocumentMoniker": "VueAppTest1.Server\\Support\\StuStudent.cs",
-              "ToolTip": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Support\\StuStudent.cs",
+              "ToolTip": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Support\\StuStudent.cs",
               "RelativeToolTip": "VueAppTest1.Server\\Support\\StuStudent.cs",
               "ViewState": "AgIAAE4AAAAAAAAAAAAtwE8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T07:25:40.75Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-24T07:25:40.75Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "StudentController.cs",
-              "DocumentMoniker": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Controllers\\StudentController.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Controllers\\StudentController.cs",
               "RelativeDocumentMoniker": "VueAppTest1.Server\\Controllers\\StudentController.cs",
-              "ToolTip": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\Controllers\\StudentController.cs",
+              "ToolTip": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Controllers\\StudentController.cs",
               "RelativeToolTip": "VueAppTest1.Server\\Controllers\\StudentController.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAowEcAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAowFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-24T07:18:27.257Z",
               "EditorCaption": ""
@@ -105,9 +101,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "StudaoStudentDao.cs",
-              "DocumentMoniker": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\DAO\\StudaoStudentDao.cs",
+              "DocumentMoniker": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\DAO\\StudaoStudentDao.cs",
               "RelativeDocumentMoniker": "VueAppTest1.Server\\DAO\\StudaoStudentDao.cs",
-              "ToolTip": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\DAO\\StudaoStudentDao.cs",
+              "ToolTip": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\DAO\\StudaoStudentDao.cs",
               "RelativeToolTip": "VueAppTest1.Server\\DAO\\StudaoStudentDao.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAgwDYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
