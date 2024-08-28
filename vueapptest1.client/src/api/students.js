@@ -21,20 +21,32 @@ export default{
     //------------------------------------------------------------------------------------
     async getAllAcademicEntities(        
     ){
-        let objApiResponse = await axios.get(strApiUrl+"/GetAllAcademicEntities");
+        let strUrl = strApiUrl+"/Student/GetAllAcademicEntities";
+        let objApiResponse = await axios.get(strUrl);
 
         let objResponse = [];
         if (
-            objApiResponse.status == 200
+            objApiResponse.data.intStatus == 200
         ) {
-            objResponse = objApiResponse.data
+            objResponse = objApiResponse.data.objResponse
         }
-
-        console.log("Axios test", objApiResponse)
+        
         return objResponse;
     },
 
+    //------------------------------------------------------------------------------------
+    async setNewStudent(       
+        objNewUser 
+    ){
+        let strUrl = strApiUrl+"/Student/SetStudent";
+        let objApiResponse = await axios.post(strUrl,objNewUser);
+
+        let objResponse = objApiResponse.data
+                
+        return objResponse;
+    },
 
     //------------------------------------------------------------------------------------
+    
 
 }

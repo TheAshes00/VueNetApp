@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "Hy5mbY7P0Lks5Q+4OMMKps+55p80KnticUmQeRDhepI=",
+  "Hash": "Kice9LMmhEZiO9Oln2qvfyqYC/jLIsWfNuu8v0wMxCE=",
   "Source": "VueAppTest1Back",
   "BasePath": "_content/VueAppTest1Back",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\vueapptest1.client\\vueapptest1Front.esproj",
+      "Identity": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\vueapptest1.client\\vueapptest1Front.esproj",
       "Version": 2,
       "Source": "vueapptest1Front",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",

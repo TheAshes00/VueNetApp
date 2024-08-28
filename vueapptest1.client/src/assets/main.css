@@ -8,7 +8,7 @@
 }
 
 label {
-  color: #bdb0b0;;
+  color: #f0efef;;
   display: block;
   font-size: 0.9em;
   font-weight: 600;
@@ -196,11 +196,11 @@ input[type="radio"] {
 input[type="checkbox"] + label,
 input[type="radio"] + label {
   text-decoration: none;
-  color: #9a9a9a;
+  color: #ededed;
   cursor: pointer;
   display: inline-block;
   font-size: 1em;
-  font-weight: 40;
+  font-weight: 400;
   padding-left: 2.4em;
   padding-right: 0.75em;
   position: relative;
@@ -237,7 +237,6 @@ input[type="radio"]:checked + label:before {
   background: #6cc091;
   border-color: #6cc091;
   color: #ffffff;
-  content: "\f00c";
 }
 
 input[type="checkbox"]:focus + label:before,
@@ -255,27 +254,27 @@ input[type="radio"] + label:before {
 }
 
 ::-webkit-input-placeholder {
-  color: #c4e5d3 !important;
+  color: #f6f7f7 !important;
   opacity: 1;
 }
 
 :-moz-placeholder {
-  color: #c4e5d3 !important;
+  color: #f6f7f7 !important;
   opacity: 1;
 }
 
 ::-moz-placeholder {
-  color: #c4e5d3 !important;
+  color: #f6f7f7 !important;
   opacity: 1;
 }
 
 :-ms-input-placeholder {
-  color: #c4e5d3 !important;
+  color: #f6f7f7 !important;
   opacity: 1;
 }
 
 .formerize-placeholder {
-  color: #c4e5d3 !important;
+  color: #f6f7f7 !important;
   opacity: 1;
 }
 
@@ -311,4 +310,12 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }
+}
+
+/*  */
+.register-options{
+  display: flex;
+  justify-content: center;
+  padding: 4px 8px;
+  gap: 12px;
 }

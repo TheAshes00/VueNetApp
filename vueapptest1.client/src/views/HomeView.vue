@@ -51,7 +51,7 @@ export default {
 a{
   border-radius: 5px;
   color: #c7ffc2;
-  background: rgb(0, 0, 0, .6);
+  background: radial-gradient(black, rgb(9 9 9 / 47%));
   padding: 8px 16px;
 }
 </style>

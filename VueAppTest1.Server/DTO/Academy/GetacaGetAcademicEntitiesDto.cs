@@ -1,15 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
-namespace VueAppTest1Back.DTO.Student
+namespace VueAppTest1Back.DTO.Academy
 {
     public class GetacaGetAcademicEntitiesDto
     {
         public class Out
         {
+            public string strGroupName { get; set; }
+            public List<Academy> darrAcademies { get; set; }
+        }
+
+        public class Academy
+        {
             public int intPk { get; set; }
             public string strAcademyName { get; set; }
-            public int intType { get; set; }
         }
     }
 }

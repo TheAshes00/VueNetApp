@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\Users\\ferna\\source\\repos\\VueAppTest1\\VueAppTest1.Server\\..\\vueapptest1.client",
+"WorkingDirectory": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\..\\vueapptest1.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

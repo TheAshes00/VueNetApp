@@ -7,11 +7,24 @@ export const useStudentStore = defineStore ('student',
         test: "test",
         objWeather: null,
         arrAcademicEntities: [],
+        boolShowErrorUserAdded: false,
+        boolErrorUserAdded: false,
+        strUserMessage: ""
     }),
     getters: {
         getTest: (state) => state.test,
     },
     actions: {
+        //------------------------------------------------------------------------------------
+        async getAllAcademicEntities(
+        ) {
+            let objResponse = await students.getAllAcademicEntities();
+            if(
+                objResponse != []
+            ) {
+                this.arrAcademicEntities = objResponse
+            }
+        },
         //------------------------------------------------------------------------------------
         getUser(        
         ) {
@@ -26,23 +39,39 @@ export const useStudentStore = defineStore ('student',
         },
 
         //------------------------------------------------------------------------------------
+        async setNewUser(
+            objNewUser_I
+        ) {
+            let objResponse = await students.setNewStudent(objNewUser_I);
+            
+            if (
+                objResponse.intStatus == 200
+            )
+            {
+                this.boolErrorUserAdded = false;
+                this.boolShowErrorUserAdded = false;
+                this.strUserMessage = "";
+            }
+            else{
+                this.boolErrorUserAdded = true;
+                this.boolShowErrorUserAdded = true;
+                this.strUserMessage = objResponse.strUserMessage;
+            }
+        },
+
+        //------------------------------------------------------------------------------------
+        setBoolShowErrorMessage(
+            boolShowErrorUserAdded_I
+        ) {
+            this.boolShowErrorUserAdded = boolShowErrorUserAdded_I
+        },
+
+        //------------------------------------------------------------------------------------
         async getWeather(
         ) {
             let objResponse = await students.testAxios();
             this.objWeather = objResponse;
         },
-
-        //------------------------------------------------------------------------------------
-        async getAllAcademicEntities(
-        ) {
-            let objResponse = await students.getAllAcademicEntities();
-
-            if(
-                objResponse != []
-            ) {
-                this.arrAcademicEntities = objResponse
-            }
-        }
 
         //------------------------------------------------------------------------------------
     },

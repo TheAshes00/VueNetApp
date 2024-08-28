@@ -1,0 +1,94 @@
+<template>
+    <div class="popup">
+        <div class="popup-inner">
+            <slot></slot>
+            <div class="bottom-warning">
+                <button class="warning-close" @click="closePopUp">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import { useStudentStore } from '@/stores/student';
+
+export default {
+    setup(){
+        const studentStore = useStudentStore();
+        return { studentStore };
+    },
+    methods:{
+        //--------------------------------------------------------------------------------
+        closePopUp(){
+            this.studentStore.setBoolShowErrorMessage(false);
+        },
+
+        //--------------------------------------------------------------------------------
+    }
+}
+</script>
+
+
+<style scoped>
+.popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+.popup-inner{
+    background: #c97981f5;
+    padding: 32px;
+    height: 210px;
+    width: 270px;
+    border-top: 24px solid #be1e2dc4;
+    border-radius: 8px;
+    text-align: justify;
+    color: lightgrey;
+}
+
+.bottom-warning{
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+}
+
+.warning-contact{
+    height: 40px;
+    width: 91px;
+    left: 107px;
+    top: 0px;
+    border-radius: 8px;
+    padding: 8px 16px 8px 16px;
+    background-color: #59A2C8;
+    border-color: #59A2C8;
+    color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning-close{
+    height: 40px;
+    width: 91px;
+    border-radius: 8px;
+    padding: 8px 16px 8px 16px;
+    background-color: #c45861;
+    border-color: #c45861;
+    color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>

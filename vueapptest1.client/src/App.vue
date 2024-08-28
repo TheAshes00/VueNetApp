@@ -1,8 +1,10 @@
 <template>
    <div :style="$route.path != '/' ? objStyle : {}">
-    <main>
-      <RouterView />
-    </main>
+    <KeepAlive>
+      <main>
+        <RouterView />
+      </main>
+    </KeepAlive>
    </div>
 </template>
 
@@ -13,7 +15,7 @@ export default {
       objStyle: {
         'z-index': '1',
         'position': 'relative',
-        'background': 'rgb(0 0 0 / 53%)',
+        'background': 'rgb(0 0 0 / 65%)',
         'height': '100%',
         'padding': '0 2em',
       }

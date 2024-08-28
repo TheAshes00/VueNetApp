@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
+using System.Globalization;
 using VueAppTest1Back.Context;
 using VueAppTest1Back.DAO;
 using VueAppTest1Back.DAO.Interfaces;
@@ -30,11 +31,14 @@ namespace VueAppTest1Back.Support
                 stStudent_O == null
                 )
             {
+                Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+
+                TextInfo textinfo = new CultureInfo(Thread.CurrentThread.CurrentUICulture.Name).TextInfo;
                 Student StStudent = new();
                 StStudent.strNmCta = setstudin_I.strNmCta;
-                StStudent.strName = setstudin_I.strName;
-                StStudent.strSurename = setstudin_I.strSurename;
-                StStudent.strBachelors = setstudin_I.strBachelors;
+                StStudent.strName = textinfo.ToTitleCase(setstudin_I.strName);
+                StStudent.strSurename = textinfo.ToTitleCase(setstudin_I.strSurename);
+                StStudent.strBachelors = textinfo.ToTitleCase(setstudin_I.strBachelors);
                 StStudent.intPkAcademy = setstudin_I.intPkAcademy;
 
                 studentDao.subAddStudent(context_M, StStudent);
@@ -43,7 +47,8 @@ namespace VueAppTest1Back.Support
             }
             else
             {
-                servans = new(400, "Couldn't save new student", "Existent NumCta, cannot add as new student", null);
+                servans = new(400, "Identification number already asigned to someone, verify your data", 
+                    "Existent NumCta, cannot add as new student", null);
             }
             
             return servans;

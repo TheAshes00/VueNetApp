@@ -9,6 +9,9 @@ export default {
     methods: {
         subActivateHelpArea(){
             this.boolHelpActive = !this.boolHelpActive;
+        },
+        subLoginUser(){
+            this.$router.push("/activities");
         }
     }
 }
@@ -17,7 +20,7 @@ export default {
     <div class="container-fluid">
         <form class="form-attributes ">
             <div class="form-top">
-                <label for="nmct" class="text-login-color"> 
+                <label for="nmct" class="text-login-color text-login"> 
                     Número de indentificacíon 
                     <span>
                         <button class="help-button" type="button" v-on:click="subActivateHelpArea">
@@ -42,7 +45,7 @@ export default {
                 <input type="text" name="nmct" id="nmct">
             </div>
             <div class="form-bottom">
-                <button class="button login-button" type="button">
+                <button class="button login-button shadow-box" type="button" v-on:click="subLoginUser">
                     Login
                 </button>
             </div>
@@ -61,6 +64,10 @@ export default {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+.text-login{
+    background: rgb(0 0 0 / 12%);
+    border-radius: 10px;
 }
 .text-login-color {
     color: whitesmoke;
@@ -82,6 +89,7 @@ export default {
     border: 1px whitesmoke solid;
     background: rgb(0, 0, 0, 0.5);
     margin-bottom: 16px;
+    border-radius: 10px;
 }
 .help-button {
     background: transparent;
@@ -100,7 +108,7 @@ export default {
 
 .login-button{
     margin-top: 1em;
-    background: rgb(9 9 9 / 60%);
+    background: radial-gradient(black, rgb(9 9 9 / 47%));
     width: 100%;
 }
 

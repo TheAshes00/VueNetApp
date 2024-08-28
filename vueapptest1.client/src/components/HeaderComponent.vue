@@ -6,9 +6,17 @@
     </header>
 </template>
 
-<style>
+<style scoped>
 header {
   line-height: 1.5;
+  width: 100%;
+    /* color: #f2f2f2; */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 @media (min-width: 1024px) {
