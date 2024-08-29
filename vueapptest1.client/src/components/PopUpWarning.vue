@@ -15,14 +15,27 @@
 import { useStudentStore } from '@/stores/student';
 
 export default {
+    props: ['strParent'],
     setup(){
         const studentStore = useStudentStore();
         return { studentStore };
     },
+    data(){
+        return{
+            strParentComponet: this.strParent,
+        }
+    },
     methods:{
         //--------------------------------------------------------------------------------
         closePopUp(){
-            this.studentStore.setBoolShowErrorMessage(false);
+            if (
+                this.strParentComponet === "Login"
+            ) {
+                this.studentStore.setBoolShowStudentErrorMessage(false);
+            }
+            else{
+                this.studentStore.setBoolShowErrorMessage(false);
+            }
         },
 
         //--------------------------------------------------------------------------------

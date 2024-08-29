@@ -55,15 +55,15 @@ button,
   -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  background-color: transparent;
-  box-shadow: inset 0 0 0 3px #ff9999;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* box-shadow: inset 0 0 0 3px #ff9999; */
   color: #ff9999;
   border: 0;
   cursor: pointer;
   display: inline-block;
   font-size: 0.75em;
-  font-weight: 400;
-  height: 3.75em;
+  font-weight: 500;
+  height: 3.0em;
   line-height: 3.85em;
   letter-spacing: 2px;
   padding: 0 4em;
@@ -71,6 +71,7 @@ button,
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
+  border: 1px solid #ff9999;
 }
 
 @media screen and (max-width: 480px) {

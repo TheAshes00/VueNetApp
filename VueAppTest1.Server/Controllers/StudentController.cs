@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Net.NetworkInformation;
 using VueAppTest1Back.Context;
 using VueAppTest1Back.DTO;
+using VueAppTest1Back.DTO.Material;
 using VueAppTest1Back.DTO.Student;
 using VueAppTest1Back.Support;
 

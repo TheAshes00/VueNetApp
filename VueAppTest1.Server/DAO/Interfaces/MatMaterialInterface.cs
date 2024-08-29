@@ -12,5 +12,6 @@ namespace VueAppTest1Back.DAO.Interfaces
         public void subUpdateMaterial(CaafiContext context_M, Material MatMaterial_I);
         public void subValidateBeforeUpdating(CaafiContext context_I, GetsetmatGetSetMaterialDto.In getsetmat_I, 
             out Material? MaterialEntity_O);
+        public List<Material> darrGetAllMaterialsByPk(CaafiContext context_I, string[] arrstrNumCtrlInt_I);
     }
 }

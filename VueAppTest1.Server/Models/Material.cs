@@ -10,7 +10,7 @@ namespace VueAppTest1Back.Models
         [Column("NoCtrlInt", TypeName = "varchar(20)")]
         public required string strNumCtrlInt { get; set; }
 
-        [Column("Name", TypeName = "varchar(85)")] 
+        [Column("Nombre", TypeName = "varchar(85)")] 
         public string strName { get; set; }
 
         [Column("TpoMaterial", TypeName = "varchar(60)")] 

@@ -64,6 +64,19 @@ namespace VueAppTest1Back.DAO
             }
         }
         //--------------------------------------------------------------------------------------------------------------
+        public List<Material> darrGetAllMaterialsByPk(
+            CaafiContext context_I, 
+            string[] arrstrNumCtrlInt_I
+            )
+        {
+            return [.. context_I.Material.Where(
+                m => arrstrNumCtrlInt_I.Contains(
+                    m.strNumCtrlInt
+                 )
+            )];
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
     }
     //==================================================================================================================
 }

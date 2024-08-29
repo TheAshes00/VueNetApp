@@ -9,7 +9,10 @@ export const useStudentStore = defineStore ('student',
         arrAcademicEntities: [],
         boolShowErrorUserAdded: false,
         boolErrorUserAdded: false,
-        strUserMessage: ""
+        strUserMessage: "",
+        boolUserNotFound: false,
+        boolShowErrorNotFound: false,
+
     }),
     getters: {
         getTest: (state) => state.test,
@@ -73,6 +76,42 @@ export const useStudentStore = defineStore ('student',
             this.objWeather = objResponse;
         },
 
+        //------------------------------------------------------------------------------------
+        async getLoginConfirm(
+            strNmCta_I
+        ) {
+            let objApiResponse = await students.getStudentLogin(strNmCta_I);
+            if(
+                objApiResponse.intStatus == 200
+            ){
+                this.boolUserNotFound = false;
+                this.boolShowErrorNotFound = false;
+                this.strUserMessage = ""
+                this.objStudent = objApiResponse.objResponse
+            }
+            else
+            {
+                this.boolUserNotFound = true;
+                this.boolShowErrorNotFound = true;
+                this.objStudent = null;
+                this.strUserMessage = objApiResponse.strUserMessage;
+            }
+        },
+
+        //------------------------------------------------------------------------------------
+        setBoolShowStudentErrorMessage(
+            boolShowErrorUserNotFound_I
+        ) {
+            this.boolShowErrorNotFound = boolShowErrorUserNotFound_I
+        },
+
+        //------------------------------------------------------------------------------------
+        async getMaterialConfirmation(
+            arrstrMaterial_I
+        ) {
+            let objApiResponse = await students.getMaterialConfirmation(arrstrMaterial_I);
+            console.log(objApiResponse)
+        }
         //------------------------------------------------------------------------------------
     },
 } )

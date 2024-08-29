@@ -5,6 +5,7 @@ using VueAppTest1Back.Context;
 using VueAppTest1Back.DAO;
 using VueAppTest1Back.DAO.Interfaces;
 using VueAppTest1Back.DTO;
+using VueAppTest1Back.DTO.Material;
 using VueAppTest1Back.DTO.Student;
 using VueAppTest1Back.Models;
 
@@ -26,7 +27,7 @@ namespace VueAppTest1Back.Support
             Student? stStudent_O;
             studentDao.subValidateBeforeUpdating(context_M, setstudin_I, out stStudent_O);
 
-            if(
+            if (
 
                 stStudent_O == null
                 )
@@ -47,10 +48,10 @@ namespace VueAppTest1Back.Support
             }
             else
             {
-                servans = new(400, "Identification number already asigned to someone, verify your data", 
+                servans = new(400, "Identification number already asigned to someone, verify your data",
                     "Existent NumCta, cannot add as new student", null);
             }
-            
+
             return servans;
         }
 
@@ -62,23 +63,24 @@ namespace VueAppTest1Back.Support
         {
             ServansdtoServiceAnswerDto servans;
 
-            var Students =  context_I.Student.Include("AcademicEntEntity").ToList();
-            Student? stStudent = Students.FirstOrDefault(s => s.strNmCta.Equals(strNmCta_I)); 
+            var Students = context_I.Student.Include("AcademicEntEntity").ToList();
+            Student? stStudent = Students.FirstOrDefault(s => s.strNmCta.Equals(strNmCta_I));
 
             if (
                 stStudent == null
                 )
             {
-                servans = new(400, "Not found", "Studen NMCta does not exists", stStudent);
+                servans = new(400, "User with identification number " + strNmCta_I + " does not exist. Please try again",
+                    "User strNmCta does not exists", stStudent);
             }
             else
             {
-                
+
                 GetsetstudGetSetStudentDto.Out getsetstuout = new GetsetstudGetSetStudentDto.Out(
-                    stStudent.strName, stStudent.strNmCta, stStudent.strSurename, stStudent.strBachelors, 
+                    stStudent.strName, stStudent.strNmCta, stStudent.strSurename, stStudent.strBachelors,
                     stStudent.AcademicEntEntity?.strAcademyName, stStudent.AcademicEntEntity.intType
                     );
-                servans = new(200,getsetstuout);
+                servans = new(200, getsetstuout);
             }
 
             return servans;

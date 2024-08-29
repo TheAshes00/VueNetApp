@@ -1,22 +1,76 @@
 <script>
+import { useStudentStore } from '@/stores/student';
+import PopUpWarning from './PopUpWarning.vue';
+import LoaderComponent from './LoaderComponent.vue';
+
 export default {
+    setup(){
+        const studentStore = useStudentStore();
+        return {studentStore}
+    },
     data() {
         return {
             boolHelpActive: false,
             strIdentificaionNumber : "",
+            boolIsLoading: false,
         }
     },
+    components: {
+        PopUpWarning,
+        LoaderComponent
+    },
     methods: {
+        //--------------------------------------------------------------------------------
         subActivateHelpArea(){
             this.boolHelpActive = !this.boolHelpActive;
         },
-        subLoginUser(){
-            this.$router.push("/activities");
-        }
+
+        //--------------------------------------------------------------------------------
+        async subLoginUser(){
+            this.boolIsLoading = true;
+
+            if (
+                this.boolIndetificationNumberIsSet()
+            )
+            {
+                await this.studentStore.getLoginConfirm(this.strIdentificaionNumber)
+
+                if(
+                    !this.studentStore.boolUserNotFound
+                ) {
+                    this.$router.push("/activities");
+                }
+            }
+                
+            this.boolIsLoading = false;
+        },
+
+        //--------------------------------------------------------------------------------
+        async subShowErrorMessage(){
+            this.studentStore.setBoolShowStudentErrorMessage(false)
+        },
+
+        //--------------------------------------------------------------------------------
+        boolIndetificationNumberIsSet(){
+            let boolIsReady = false;
+            if (
+                this.strIdentificaionNumber &&
+                !isNaN(Number(this.strIdentificaionNumber))
+            ) {
+                boolIsReady = true;
+            }
+            return boolIsReady;
+        },
+
+        //--------------------------------------------------------------------------------
+
     }
 }
 </script>
 <template>
+    <PopUpWarning v-if="studentStore.boolUserNotFound && studentStore.boolShowErrorNotFound" :strParent="'Login'">
+        {{ studentStore.strUserMessage }}
+    </PopUpWarning>
     <div class="container-fluid">
         <form class="form-attributes ">
             <div class="form-top">
@@ -42,14 +96,16 @@ export default {
                         </p>
                     </div>
                 </Transition>
-                <input type="text" name="nmct" id="nmct">
+                <input type="text" name="nmct" id="nmct" v-model="strIdentificaionNumber">
             </div>
             <div class="form-bottom">
-                <button class="button login-button shadow-box" type="button" v-on:click="subLoginUser">
+                <LoaderComponent v-if="boolIsLoading">
+                </LoaderComponent>
+                <button class="button login-button shadow-box" type="button" 
+                    v-on:click="subLoginUser" v-else>
                     Login
                 </button>
             </div>
-            
         </form>
     </div>
 </template>
@@ -117,4 +173,7 @@ export default {
     justify-content: center;
 }
 
+.popup-width{
+    width: 240px;
+}
 </style>
