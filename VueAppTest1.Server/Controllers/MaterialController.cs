@@ -25,9 +25,9 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------------------------------------
-        [HttpGet("[action]/{arrstrNumCtrlInt}")]
+        [HttpGet("[action]")]
         public IActionResult GetAllMaterial(
-            [FromRoute]
+            [FromQuery]
             string[] arrstrNumCtrlInt
             )
         {

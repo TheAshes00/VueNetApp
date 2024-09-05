@@ -1,16 +1,72 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 using VueAppTest1Back.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 var strspecifiedOrigins = "_specifiedOrigins";
 var strConnectionString = builder.Configuration.GetConnectionString("WebApiDatabase");
 
+//                                                          // Get Configuration from appsettings 
+var jwtSettings = builder.Configuration.GetSection("JWTSettings");
+var key = jwtSettings["Key"];
+var issuer = jwtSettings["Issuer"];
+var audience = jwtSettings["Audience"];
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+//                                                          // Add JWT configuration
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = issuer,
+            ValidAudience = audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+        };
+    });
+
+builder.Services.AddSwaggerGen(c =>
+{
+    // Aquí puedes agregar una configuración de seguridad para Swagger (opcional)
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Ingrese 'Bearer' [espacio] y luego el token JWT en el campo de texto a continuación.\n\nEjemplo: \"Bearer abcdef12345\""
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+    c.CustomSchemaIds(type => type.FullName);
+});
+
 
 builder.Services.AddCors(options =>
     options.AddPolicy(strspecifiedOrigins,
@@ -43,8 +99,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors(strspecifiedOrigins);
+app.UseAuthentication();
 app.UseAuthorization();
+
+
+app.UseCors(strspecifiedOrigins);
 
 app.MapControllers();
 

@@ -33,7 +33,24 @@ export default {
             ) {
                 this.studentStore.setBoolShowStudentErrorMessage(false);
             }
-            else{
+            else if (
+                this.strParent === "Activities"
+            )
+            {
+                this.studentStore.setBoolShowMaterialErrorMessage(false);
+            }
+            else if(
+                this.strParent === 'Activities-Register'
+            ) {
+                this.studentStore.setBoolShowRegisterLoanErrorMessage(false);
+            }
+            else if(
+                this.strParent === 'Activities-Return'
+            ) {
+                this.studentStore.setBoolShowReturnErrorMessage(false);
+            }
+            else
+            {
                 this.studentStore.setBoolShowErrorMessage(false);
             }
         },

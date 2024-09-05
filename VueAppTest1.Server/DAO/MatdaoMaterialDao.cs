@@ -77,6 +77,22 @@ namespace VueAppTest1Back.DAO
         }
 
         //--------------------------------------------------------------------------------------------------------------
+        public static bool boolValidateMaterialPk(
+            CaafiContext context_I,
+            string[] arrstrNumCtrlInt
+            )
+        {
+            //                                              // Get all strNumCtrlInt coincidences
+            List<string> darrstrNumCtrlInt = context_I.Material
+                                  .Where(m => arrstrNumCtrlInt.Contains(m.strNumCtrlInt))
+                                  .Select(m => m.strNumCtrlInt)
+                                  .ToList();
+
+            //                                              // Verify if every NumCtrlInt of the array are in the db
+            return arrstrNumCtrlInt.All(id => darrstrNumCtrlInt.Contains(id));
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
     }
     //==================================================================================================================
 }

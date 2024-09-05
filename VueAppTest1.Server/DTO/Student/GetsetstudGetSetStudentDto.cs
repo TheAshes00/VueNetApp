@@ -20,7 +20,7 @@ namespace VueAppTest1Back.DTO.Student
 
         public class Out
         {
-            private readonly String[] arrstrTypes = ["Facultad", "Preparatoria", "Centro_Universitario"];
+            private readonly String[] arrstrTypes = ["Facultad", "Preparatoria", "Centro Universitario"];
             public String strName { get; set; }
             public string strNmCta { get; set; }
             public String strSurename { get; set; }

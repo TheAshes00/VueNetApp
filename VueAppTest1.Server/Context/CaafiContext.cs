@@ -18,6 +18,8 @@ namespace VueAppTest1Back.Context
         {
             optionsBuilder.UseMySql(strConectionString, 
                 ServerVersion.AutoDetect(strConectionString));
+
+            
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -99,6 +101,13 @@ namespace VueAppTest1Back.Context
                 .WithMany(s => s.IcWorkshopAttendanceEntity)
                 .HasForeignKey(wa => wa.strPkStudent);
 
+            //                                              // (1 : n) relation from Student
+            //                                              // Entity to Loan Entity
+            modelBuilder.Entity<Loan>()
+                .HasOne(l => l.StuStudent)
+                .WithMany(s => s.IcLoanEntity)
+                .HasForeignKey(l => l.strPkStudent);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -108,5 +117,7 @@ namespace VueAppTest1Back.Context
         public DbSet<Student> Student { get; set; }
         public DbSet<Material> Material { get; set; }
         public DbSet<Admin> Admin { get; set; }
+        public DbSet<Loan> Loan { get; set; }
+        public DbSet<MaterialLoan> MaterialLoan { get; set; }
     }
 }

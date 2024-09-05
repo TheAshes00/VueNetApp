@@ -37,7 +37,7 @@ button,
   display: inline-block;
   font-size: 0.75em;
   font-weight: 400;
-  height: 3.75em;
+  height: 3.0em;
   line-height: 3.85em;
   letter-spacing: 2px;
   padding: 0 4em;
@@ -109,6 +109,18 @@ textarea {
   text-decoration: none;
   width: 100%;
 }
+
+input[type="text"]:disabled,
+input[type="password"]:disabled,
+input[type="email"]:disabled,
+input[type="tel"]:disabled,
+input[type="time"]:disabled,
+input[type="date"]:disabled,
+select:disabled,
+textarea:disabled {
+  background: #6cc0912b;
+}
+
 
 input[type="text"]:invalid,
 input[type="password"]:invalid,
@@ -319,4 +331,17 @@ a,
   justify-content: center;
   padding: 4px 8px;
   gap: 12px;
+}
+
+
+/* Paddings */
+.pad-8{
+  padding: 8px;
+}
+
+.button-align{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: center;
 }

@@ -12,13 +12,15 @@
 </template>
 
 <script>
+import { useAdminStore } from '@/stores/admin';
 import { useStudentStore } from '@/stores/student';
 
 export default {
     props:['strComponent'],
     setup(){
         const studentStore = useStudentStore();
-        return { studentStore };
+        const adminStore = useAdminStore();
+        return { studentStore, adminStore };
     },
     data(){
         return {
@@ -31,6 +33,13 @@ export default {
             if(
                 this.strUsedByComponent === 'Register'
             ) {
+                this.$router.push('/')
+            }
+            else if (
+                this.strUsedByComponent === 'Activities'
+            ) {
+                this.studentStore.$reset(); 
+                this.adminStore.$reset();
                 this.$router.push('/')
             }
         },

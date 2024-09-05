@@ -11,7 +11,7 @@ namespace VueAppTest1Back.Models
         [Column("Pk")]
         public int intPk { get; set; }
 
-        [Column("ConAdm", TypeName = "varchar(16)")]
+        [Column("ConAdm", TypeName = "varchar(255)")]
         public string strPass { get; set; }
 
         [Column("NomAdm", TypeName = "varchar(40)")]
