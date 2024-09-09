@@ -8,8 +8,8 @@
         {
             //--------------------------------------------------------------------------------------------------------------
             //                                                  //INSTANCE VARIABLES
-            public int? intPk { get; set; }
-            public string strWorkshopName { get; set; }
+            public int? intnPk { get; set; }
+            public string strWorkshop { get; set; }
             public bool boolActive { get; set; }
 
             //--------------------------------------------------------------------------------------------------------------

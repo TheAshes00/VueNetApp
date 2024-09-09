@@ -119,5 +119,7 @@ namespace VueAppTest1Back.Context
         public DbSet<Admin> Admin { get; set; }
         public DbSet<Loan> Loan { get; set; }
         public DbSet<MaterialLoan> MaterialLoan { get; set; }
+        public DbSet<TutorWorkshop> TutorWorkshop { get; set; }
+        public DbSet<WorkshopAttendance> WorkshopAttendance { get; set; }
     }
 }

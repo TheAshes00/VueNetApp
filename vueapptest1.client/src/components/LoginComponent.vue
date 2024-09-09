@@ -2,17 +2,24 @@
 import { useStudentStore } from '@/stores/student';
 import PopUpWarning from './PopUpWarning.vue';
 import LoaderComponent from './LoaderComponent.vue';
+import { useAdminStore } from '@/stores/admin';
 
 export default {
     setup(){
         const studentStore = useStudentStore();
-        return {studentStore}
+        const adminStore = useAdminStore();
+        return { studentStore, adminStore }
     },
     data() {
         return {
             boolHelpActive: false,
             strIdentificaionNumber : "",
             boolIsLoading: false,
+            boolAdminCommand: false,
+            objAdmin:{
+                strUsername: "",
+                strPassword: ""
+            }
         }
     },
     components: {
@@ -33,6 +40,36 @@ export default {
                 this.boolIndetificationNumberIsSet()
             )
             {
+                if(
+                    this.boolAdminCommand
+                ) {
+                    await this.adminStore.subLoginAdmin(this.objAdmin)
+
+                    if(
+                        !this.adminStore.boolAdminLoginError
+                    ){
+                        this.$router.push('/admin');
+                    }
+                } 
+                else
+                {
+                    this.subActivateAdminLogin()
+                }
+                
+            }
+                
+            this.boolIsLoading = false;
+        },
+
+        //--------------------------------------------------------------------------------
+        async subActivateAdminLogin(){
+            if(
+                this.strIdentificaionNumber === '0000000'
+            ){
+                this.boolAdminCommand = true;
+            }
+            else
+            {
                 await this.studentStore.getLoginConfirm(this.strIdentificaionNumber)
 
                 if(
@@ -41,9 +78,8 @@ export default {
                     this.$router.push("/activities");
                 }
             }
-                
-            this.boolIsLoading = false;
         },
+
 
         //--------------------------------------------------------------------------------
         async subShowErrorMessage(){
@@ -68,12 +104,14 @@ export default {
 }
 </script>
 <template>
-    <PopUpWarning v-if="studentStore.boolUserNotFound && studentStore.boolShowErrorNotFound" :strParent="'Login'">
-        {{ studentStore.strUserMessage }}
+    <PopUpWarning v-if="(studentStore.boolUserNotFound && studentStore.boolShowErrorNotFound) ||
+        (adminStore.boolAdminLoginError && adminStore.boolShowAdminLoginError)" 
+        :strParent="studentStore.boolUserNotFound ? 'Login' : 'LoginAdmin'">
+        {{ studentStore.boolUserNotFound ? studentStore.strUserMessage : adminStore.strUserName}}
     </PopUpWarning>
     <div class="container-fluid">
-        <form class="form-attributes ">
-            <div class="form-top">
+        <form class="form-attributes" v-on:submit.prevent="subLoginUser">
+            <div class="form-top" v-if="!boolAdminCommand">
                 <label for="nmct" class="text-login-color text-login"> 
                     Número de indentificacíon 
                     <span>
@@ -96,7 +134,15 @@ export default {
                         </p>
                     </div>
                 </Transition>
-                <input type="text" name="nmct" id="nmct" v-model="strIdentificaionNumber">
+                <input type="text" maxlength="7" name="nmct" id="nmct" v-model="strIdentificaionNumber">
+            </div>
+
+            <div class="form-top" v-else>
+                <label for="admin-username" class="text-login-color text-login">Username</label>
+                <input type="text" name="admin-username" id="admin-username" v-model="objAdmin.strUsername">
+
+                <label for="admin-password" class="text-login-color text-login">Password</label>
+                <input type="password" name="admin-password" id="admin-password" v-model="objAdmin.strPassword">
             </div>
             <div class="form-bottom">
                 <LoaderComponent v-if="boolIsLoading">

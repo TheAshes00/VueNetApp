@@ -67,10 +67,10 @@ namespace VueAppTest1Back.DAO
         //--------------------------------------------------------------------------------------------------------------
         public static bool boolValidatePk(
             CaafiContext context_I,
-            string strNmCta
+            string strNmCta_I
             )
         {
-            return context_I.Student.Where(student => student.strNmCta.Equals(strNmCta)).Any();
+            return context_I.Student.Where(student => student.strNmCta.Equals(strNmCta_I)).Any();
         }
 
         //--------------------------------------------------------------------------------------------------------------

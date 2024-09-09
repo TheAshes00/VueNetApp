@@ -124,7 +124,7 @@ export default{
           Return material
         </label>
       </div>
-    </div>
+  </div>
 
       <div v-if="strActionSelected === 'material'">
         <Material></Material>

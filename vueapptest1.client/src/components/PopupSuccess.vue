@@ -42,6 +42,21 @@ export default {
                 this.adminStore.$reset();
                 this.$router.push('/')
             }
+            else if(
+                this.strUsedByComponent === 'Workshop'
+            ){
+                this.adminStore.subCloseSucces(false);
+            }
+            else if(
+                this.strUsedByComponent === 'Tutor'
+            ){
+                this.adminStore.subCloseTutorSuccess(false);
+            }
+            else if(
+                this.strUsedByComponent === 'Material'
+            ){
+                this.adminStore.subCloseMaterialSuccess(false);
+            }
         },
 
         //--------------------------------------------------------------------------------
@@ -71,7 +86,7 @@ export default {
     padding: 32px;
     height: 210px;
     width: 270px;
-    border-top: 24px solid #d6f5d6;
+    border-top: 27px solid #d6f5d6;
     border-radius: 8px;
     text-align: justify;
     color: #a2a6a2;

@@ -12,13 +12,15 @@
 </template>
 
 <script>
+import { useAdminStore } from '@/stores/admin';
 import { useStudentStore } from '@/stores/student';
 
 export default {
     props: ['strParent'],
     setup(){
         const studentStore = useStudentStore();
-        return { studentStore };
+        const adminStore = useAdminStore();
+        return { studentStore, adminStore };
     },
     data(){
         return{
@@ -32,6 +34,11 @@ export default {
                 this.strParentComponet === "Login"
             ) {
                 this.studentStore.setBoolShowStudentErrorMessage(false);
+            }
+            else if (
+                this.strParent === "LoginAdmin"
+            ) {
+                this.adminStore.subSetBoolShowAdminLoginError(false);
             }
             else if (
                 this.strParent === "Activities"
@@ -48,6 +55,21 @@ export default {
                 this.strParent === 'Activities-Return'
             ) {
                 this.studentStore.setBoolShowReturnErrorMessage(false);
+            }
+            else if (
+                this.strParent === 'Workshop'
+            ) {
+                this.adminStore.subCloseWorkshopWarning(false)
+            }
+            else if (
+                this.strParent === 'Tutor'
+            ) {
+                this.adminStore.subCloseTutorWarning(false)
+            }
+            else if (
+                this.strParent === 'Material'
+            ) {
+                this.adminStore.subCloseMaterialWarning(false)
             }
             else
             {

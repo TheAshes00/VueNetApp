@@ -47,6 +47,18 @@ namespace VueAppTest1Back.DAO
             context_M.SaveChanges();
         }
 
+        //--------------------------------------------------------------------------------------------------------------
+        public static bool boolValidatePk(
+            CaafiContext context_I,
+            int intPk_I
+            )
+        {
+            bool boolValid = context_I.Workshop.Where( wor => wor.intPk == intPk_I ).Any();
+            return boolValid;
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+
     }
     //==================================================================================================================
 }

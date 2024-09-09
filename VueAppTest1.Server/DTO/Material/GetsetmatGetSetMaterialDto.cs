@@ -11,7 +11,8 @@ namespace VueAppTest1Back.DTO.Material
             public string strName { get; set; }
             public string strMarerialType { get; set; }
             public string strCodeType { get; set; }
-            public bool? boolActive { get; set; }
+            public bool boolActive { get; set; }
+
         }
     }
 }

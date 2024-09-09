@@ -114,7 +114,7 @@ namespace VueAppTest1Back.Controllers
             }
             else if (
                 //                                          // Validates user
-                AdmAdminDao.admGetAdminByUsername(context, loginadmin.strUsername) != null
+                AdmAdmin.boolvalidateUser(context, loginadmin)
                 )
             {
                 var claims = new[]
@@ -173,6 +173,50 @@ namespace VueAppTest1Back.Controllers
 
             IActionResult aresult = base.Ok(servans);
             return aresult;
+        }
+
+        //--------------------------------------------------------------------------------
+        [HttpGet("[action]")]
+        public IActionResult GetStudentReport(
+            [FromQuery]
+            string strNmCta,
+            [FromQuery]
+            DateTime dateStart,
+            [FromQuery]
+            DateTime dateEnd
+            )
+        {
+            CaafiContext context = new CaafiContext();
+            ServansdtoServiceAnswerDto servans;
+
+            if(
+                strNmCta == null ||
+                strNmCta.Length < 7
+                )
+            {
+                servans = new ServansdtoServiceAnswerDto(400, "Invalid data", 
+                    "Invalid model", null);
+            }
+            else
+            {
+                AdmAdmin.subGetstudentReport(context,strNmCta,dateStart,dateEnd, out servans);
+            }
+            IActionResult iresult = base.Ok(servans);
+            return iresult;
+        }
+
+        //--------------------------------------------------------------------------------
+        [HttpGet("[action]")]
+        public IActionResult GetTutorReport(
+            )
+        {
+            using var context = new CaafiContext();
+
+            ServansdtoServiceAnswerDto servans;
+
+
+            IActionResult iresult = base.Ok();
+            return iresult;
         }
         //--------------------------------------------------------------------------------
     }

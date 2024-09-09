@@ -26,7 +26,7 @@ namespace VueAppTest1Back.Support
                 //    acenAcademicEntity.darrGetAllAcademicEntities(context_I).Select(
                 //        ae => new GetacaGetAcademicEntitiesDto.Out
                 //        {
-                //            intPk = ae.intPk,
+                //            intnPk = ae.intnPk,
                 //            intType = ae.intType,
                 //            strAcademyName = ae.strAcademyName
                 //        }

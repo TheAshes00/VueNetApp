@@ -298,7 +298,7 @@ input[type="radio"] + label:before {
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: #c7ffc2;
   transition: 0.4s;
   padding: 3px;
 }
@@ -344,4 +344,48 @@ a,
   align-items: center;
   gap: 4px;
   justify-content: center;
+}
+
+.error-container {
+  /* border-left: 8px solid var(--danger-100, #BE1E2D); */
+  background: rgba(201, 121, 129, 0.20);
+  padding: 12px, 32px, 12px, 32px;
+  color: #ff9999;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.error-container div:first-child {
+  /*flex-grow:1*/
+  display: flex;
+  margin-top: 12px;
+  margin-right: 8px;
+  margin-bottom: 12px;
+  margin-left: 32px;
+  vertical-align: central;
+  flex-direction: row;
+  align-items: center;
+}
+
+.error-container div:nth-child(even) {
+  flex-grow: initial;
+  margin-top: 12px;
+  margin-right: 8px;
+  margin-bottom: 12px;
+  margin-left: 8px;
+  text-align: justify;
+}
+
+.error-container div:nth-child(n + 3) {
+  /*flex-grow: initial;*/
+  display: flex;
+  margin-top: 12px;
+  margin-right: 32px;
+  margin-bottom: 12px;
+  margin-left: 8px;
+  flex-direction: row;
+  align-items: center;
 }

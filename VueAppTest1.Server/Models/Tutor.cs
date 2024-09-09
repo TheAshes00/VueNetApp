@@ -21,7 +21,7 @@ namespace VueAppTest1Back.Models
         public string strSurename { get; set; }
 
         [Column("Activo", TypeName ="boolean")]
-        public bool boolActivo { get; set; }
+        public bool boolActive { get; set; }
 
         [Column("Genero", TypeName = "tinyint")]
         public byte byteGender {  get; set; }

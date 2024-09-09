@@ -3,6 +3,7 @@ using VueAppTest1Back.DAO;
 using VueAppTest1Back.DTO.Material;
 using VueAppTest1Back.DTO;
 using VueAppTest1Back.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace VueAppTest1Back.Support
 {
@@ -131,6 +132,136 @@ namespace VueAppTest1Back.Support
                 );
 
             servans_O = new(400, strUserMessage, "Some NmCtrInt are not active", arrstrNumCtrlInt_I);
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+        public static void subPaginateAllMaterial(
+            CaafiContext context_I,
+            int intPageNumber_I,
+            int intPageSize_I,
+            string? strSearch_I,
+            out ServansdtoServiceAnswerDto servans_O
+            )
+        {
+            MatdaoMaterialDao matdao = new();
+
+            //                                              // Skip represents the number
+            //                                              // adn positon of the registers
+            //                                              // that will be 
+            //                                              // shown, based on th page 
+            //                                              // number, and page size
+            int intSkip = (intPageNumber_I - 1) * intPageSize_I;
+
+            List<Material> arrmatentity = matdao.darrGetAllMaterials(context_I);
+
+            int intTotalMaterial = arrmatentity.Count;
+
+            List<Material> darrPaginatedMaterials;
+            if (
+                strSearch_I.IsNullOrEmpty()
+                )
+            {
+                darrPaginatedMaterials = arrmatentity
+                    .OrderByDescending(w => w.strNumCtrlInt)
+                    .Skip(intSkip)
+                    .Take(intPageSize_I)
+                    .ToList();
+            }
+            else
+            {
+                darrPaginatedMaterials = arrmatentity
+                    .Where(cw => cw.strName.Contains(strSearch_I, 
+                        StringComparison.CurrentCultureIgnoreCase))
+                    .OrderByDescending(w => w.strNumCtrlInt)
+                    .Skip(intSkip)
+                    .Take(intPageSize_I)
+                    .ToList();
+
+                intTotalMaterial = darrPaginatedMaterials.Count;
+            }
+            
+            
+            //ObjpagObjPaginateDto.Out objpagObjPaginateDto = new ObjpagObjPaginateDto.Out 
+            //{
+            //    intTotalCount = intTotalWorkshops,
+            //    intPageNumber = intPageNumber_I,
+            //    intPageSize = intPageSize_I,
+            //    objPaginatedObject = darrPaginatedWorkshops
+            //};
+
+            servans_O = new ServansdtoServiceAnswerDto(200,
+                Tools.Auxiliar.Paginate.objpagoutPaginateEntity(intTotalMaterial, 
+                intPageNumber_I,intPageSize_I, darrPaginatedMaterials));
+        }
+
+        //--------------------------------------------------------------------------------------------------------------
+        public static void subAddNewMaterial(
+            CaafiContext context_I,
+            GetsetmatGetSetMaterialDto.In getsetmattin_I,
+            out ServansdtoServiceAnswerDto servans_O
+            )
+        {
+            MatdaoMaterialDao matdao = new ();
+            if (
+                !getsetmattin_I.strMarerialType.IsNullOrEmpty()
+                )
+            {
+                servans_O = new(400, "Invalid data", "intnPk should be null",
+                    getsetmattin_I);
+            }
+            else
+            {
+                Material matentity = new();
+
+                matentity.strName = Tools.Auxiliar.TextHelper.strTitleCase(
+                    getsetmattin_I.strName);
+
+                matentity.strMarerialType = getsetmattin_I.strMarerialType;
+                matentity.strCodeType = getsetmattin_I.strCodeType;
+                matentity.boolActive = true;
+
+
+                matdao.subAddMaterial(context_I, matentity);
+
+                servans_O = new(200, null);
+            }
+
+        }
+
+        //--------------------------------------------------------------------------------
+        public static void subUpdateMaterial(
+            CaafiContext context_I,
+            GetsetmatGetSetMaterialDto.In getsetmattin_I,
+            out ServansdtoServiceAnswerDto servans_O
+            )
+        {
+            MatdaoMaterialDao matdao = new ();
+            Material? matentity = matdao.matGetMaterialByPk(context_I, 
+                getsetmattin_I.strNumCtrlInt);
+            
+            if (
+                getsetmattin_I.strNumCtrlInt.IsNullOrEmpty() ||
+                matentity == null
+                )
+            {
+                servans_O = new(400, "Invalid data", "intnPk should not be null",
+                    getsetmattin_I);
+            }
+            else
+            {
+
+                matentity.strName = Tools.Auxiliar.TextHelper.strTitleCase(
+                    getsetmattin_I.strName);
+
+                matentity.strMarerialType = getsetmattin_I.strMarerialType;
+                matentity.strCodeType = getsetmattin_I.strCodeType;
+                matentity.boolActive = getsetmattin_I.boolActive;
+
+                matdao.subUpdateMaterial(context_I, matentity);
+
+                servans_O = new(200, null);
+            }
+
         }
 
         //--------------------------------------------------------------------------------------------------------------

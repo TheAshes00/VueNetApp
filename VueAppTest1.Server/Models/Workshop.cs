@@ -13,7 +13,7 @@ namespace VueAppTest1Back.Models
         public int? intPk { get; set; }
 
         [Column("Taller", TypeName ="varchar(60)")]
-        public required String strTaller { get; set; }
+        public String strWorkshop { get; set; }
 
         [Column("Activo", TypeName = "boolean")]
         public Boolean boolActive { get; set; } = true;
