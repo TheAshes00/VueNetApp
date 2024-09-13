@@ -28,7 +28,7 @@ export default {
         objAdmin_I
     ){
         let objResponse = {
-            intStatus: 200,
+            intStatus: 400,
             strUserMessage: "Invalid username or password"
         }
         try{
@@ -102,6 +102,66 @@ export default {
         return objResponse;
         
     },
+
+    //--------------------------------------------------------------------------------
+    async subGetGetAllActiveWorkshops(
+        //
+    ) {
+        let strUrl = strApiUrl +"/Workshop/GetAllActiveWorkshops";
+
+        let objApiResponse = await axios.get(strUrl);
+
+        let arrobjWorkshops = [];
+        if(
+            objApiResponse.data.intStatus == 200
+        ) {
+            arrobjWorkshops = objApiResponse.data.objResponse
+        }
+
+        return arrobjWorkshops
+    },
+
+    //--------------------------------------------------------------------------------
+    async subGetStudentReport(
+        objReportInfo_I
+    ) {
+        let strUrl = strApiUrl + "/Admin/GetStudentReport?strNmCta="+
+            objReportInfo_I.strNmCta +"&dateStart="+objReportInfo_I.dateStart +
+            "&dateEnd="+objReportInfo_I.dateEnd;
+
+        let objApiResponse = await axios.get(strUrl);
+
+        let objResponse = null;
+
+        if (
+            objApiResponse.data.intStatus == 200
+        ) {
+            objResponse = objApiResponse.data;
+        }
+
+        return objResponse;
+    },
+
+    //--------------------------------------------------------------------------------
+    async subGetTutorReport(
+        objReportInfo_I
+    ) {
+        let strUrl = strApiUrl + "/Admin/GetTutorReport?intPkTutor="+
+            objReportInfo_I.intPkTutor +"&dateStart="+objReportInfo_I.dateStart +
+            "&dateEnd="+objReportInfo_I.dateEnd;
+
+        let objApiResponse = await axios.get(strUrl);
+
+        let objResponse = null;
+
+        if (
+            objApiResponse.data.intStatus == 200
+        ) {
+            objResponse = objApiResponse.data;
+        }
+
+        return objResponse;
+    }
 
     //--------------------------------------------------------------------------------
 

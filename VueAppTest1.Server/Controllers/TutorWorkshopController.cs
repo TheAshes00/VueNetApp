@@ -1,88 +1,34 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VueAppTest1Back.Context;
 using VueAppTest1Back.DTO;
-using VueAppTest1Back.DTO.Workshop;
+using VueAppTest1Back.DTO.TutorWorkshop;
 using VueAppTest1Back.Support;
 
 namespace VueAppTest1Back.Controllers
 {
-    //==================================================================================================================
     [Route("[controller]")]
     [ApiController]
-    public class TutorController : ControllerBase
+    public class TutorWorkshopController : ControllerBase
     {
         //--------------------------------------------------------------------------------
-        //                                INSTANCE VARIABLES
+        //                                 //INSTANCE VARIABLES
         //--------------------------------------------------------------------------------
-        private readonly ILogger<TutorController> _logger;
-        private IConfiguration _configuration;
+        private readonly ILogger<TutorWorkshopController> _logger;
 
         //--------------------------------------------------------------------------------
-        //                                //CONSTRUCTORS.
-        public TutorController(ILogger<TutorController> logger,
-            IConfiguration iConfig)
+        //                                 //CONSTRUCTORS.
+        public TutorWorkshopController(ILogger<TutorWorkshopController> logger)
         {
             _logger = logger;
-            _configuration = iConfig;
         }
 
         //--------------------------------------------------------------------------------
         //[Authorize]
         [HttpPost("[action]")]
-        public IActionResult SetTutor(
+        public IActionResult SetTutorWorkshop(
             [FromBody]
-            GetsettutGetSetTutorDto.In getsettutin
-            )
-        {
-            ServansdtoServiceAnswerDto servans;
-            if (
-                !ModelState.IsValid
-                ) 
-            {
-                servans = new(400, "Invalid data", "Invalid ModelState", 
-                    ModelState.Keys.ToString());
-            }
-            else
-            {
-                CaafiContext context = new CaafiContext();
-                using var transaction = context.Database.BeginTransaction();
-
-                transaction.CreateSavepoint("beforeTutorAdd");
-
-
-                try
-                {
-                    TutTutor.subAddNewTutor(context, getsettutin, out servans);
-                    if (
-                        servans.intStatus == 200
-                        )
-                    {
-                        transaction.Commit();
-                    }
-                    else
-                    {
-                        transaction.RollbackToSavepoint("beforeTutorAdd");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    transaction.RollbackToSavepoint("beforeTutorAdd");
-                    servans = new(400, "Something wrong", ex.Message, ex.Data);
-                }
-            }
-
-            IActionResult aresult = base.Ok(servans);
-            return aresult;
-        }
-
-        //--------------------------------------------------------------------------------
-        //[Authorize]
-        [HttpPost("[action]")]
-        public IActionResult UpdateTutor(
-            [FromBody]
-            GetsettutGetSetTutorDto.In getsettutin
+            GetsettutwokGetSetTutorWorkshopDto getsettutwor
             )
         {
             ServansdtoServiceAnswerDto servans;
@@ -98,12 +44,13 @@ namespace VueAppTest1Back.Controllers
                 CaafiContext context = new CaafiContext();
                 using var transaction = context.Database.BeginTransaction();
 
-                transaction.CreateSavepoint("beforeTutorUpdate");
+                transaction.CreateSavepoint("beforeTutorWorkshopAdd");
 
 
                 try
                 {
-                    TutTutor.subUpdateTutor(context, getsettutin, out servans);
+                    TutworTutorWorkshop.subAddNewTutorWorkshop(context, getsettutwor, 
+                        out servans);
                     if (
                         servans.intStatus == 200
                         )
@@ -112,12 +59,63 @@ namespace VueAppTest1Back.Controllers
                     }
                     else
                     {
-                        transaction.RollbackToSavepoint("beforeTutorUpdate");
+                        transaction.RollbackToSavepoint("beforeTutorWorkshopAdd");
                     }
                 }
                 catch (Exception ex)
                 {
-                    transaction.RollbackToSavepoint("beforeTutorUpdate");
+                    transaction.RollbackToSavepoint("beforeTutorWorkshopAdd");
+                    servans = new(400, "Something wrong", ex.Message, ex.Data);
+                }
+            }
+
+            IActionResult aresult = base.Ok(servans);
+            return aresult;
+        }
+
+        //--------------------------------------------------------------------------------
+        //[Authorize]
+        [HttpPost("[action]")]
+        public IActionResult UpdateTutorWorkshop(
+            [FromBody]
+            GetsettutwokGetSetTutorWorkshopDto getsettutwor
+            )
+        {
+            ServansdtoServiceAnswerDto servans;
+            if (
+                !ModelState.IsValid
+                )
+            {
+                servans = new(400, "Invalid data", "Invalid ModelState",
+                    ModelState.Keys.ToString());
+            }
+            else
+            {
+                CaafiContext context = new CaafiContext();
+                using var transaction = context.Database.BeginTransaction();
+
+                transaction.CreateSavepoint("beforeTutorWorkshopUpdate");
+
+
+                try
+                {
+                    TutworTutorWorkshop.subUpdateTutorWorkshop(context, getsettutwor, 
+                        out servans);
+
+                    if (
+                        servans.intStatus == 200
+                        )
+                    {
+                        transaction.Commit();
+                    }
+                    else
+                    {
+                        transaction.RollbackToSavepoint("beforeTutorWorkshopUpdate");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    transaction.RollbackToSavepoint("beforeTutorWorkshopUpdate");
                     servans = new(400, "Something wrong", ex.Message, ex.Data);
                 }
             }
@@ -128,7 +126,7 @@ namespace VueAppTest1Back.Controllers
         //--------------------------------------------------------------------------------
         //[Authorize]
         [HttpGet("[action]")]
-        public IActionResult GetPaginatedTutors(
+        public IActionResult GetPaginatedTutorWorkshops(
             [FromQuery]
             int intPageNumber,
             int intPageSize,
@@ -141,9 +139,8 @@ namespace VueAppTest1Back.Controllers
 
             try
             {
-
-                TutTutor.GetPaginatedTutors(context, intPageNumber, intPageSize,
-                    strSearch, out servans);
+                TutworTutorWorkshop.GetPaginatedTutorWorkshop(context, intPageNumber, 
+                    intPageSize, strSearch, out servans);
             }
             catch (Exception ex)
             {
@@ -155,9 +152,9 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
-        [HttpGet("[action]")]
-        public IActionResult GetAllActiveTutors(
+        [HttpGet("[action]/{intPkWorkshop}")]
+        public IActionResult GetWorkshopTutor(
+            int intPkWorkshop
             )
         {
             CaafiContext context = new CaafiContext();
@@ -166,32 +163,8 @@ namespace VueAppTest1Back.Controllers
 
             try
             {
-
-                TutTutor.subGetAllActiveTutor(context, out servans);
-            }
-            catch (Exception ex)
-            {
-                servans = new(400, "Something wrong", ex.Message, ex.Data);
-            }
-
-            IActionResult aresult = base.Ok(servans);
-            return aresult;
-        }
-
-        //--------------------------------------------------------------------------------
-        //[Authorize]
-        [HttpGet("[action]")]
-        public IActionResult GetAllTutors(
-            )
-        {
-            CaafiContext context = new CaafiContext();
-
-            ServansdtoServiceAnswerDto servans;
-
-            try
-            {
-
-                TutTutor.subGetAllTutor(context, out servans);
+                TutworTutorWorkshop.subGetWorkshopTutor(context, intPkWorkshop, 
+                    out servans);
             }
             catch (Exception ex)
             {

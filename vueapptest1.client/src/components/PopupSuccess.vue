@@ -57,6 +57,18 @@ export default {
             ){
                 this.adminStore.subCloseMaterialSuccess(false);
             }
+            else if (
+                this.strUsedByComponent === 'TutorWorkshop'
+            ){
+                this.adminStore.subCloseTutorWorkshopSuccess(false)
+            }
+            else if (
+                this.strUsedByComponent == 'Activities-Workshop'
+            ){
+                this.studentStore.$reset(); 
+                this.adminStore.$reset();
+                this.$router.push('/')
+            }
         },
 
         //--------------------------------------------------------------------------------

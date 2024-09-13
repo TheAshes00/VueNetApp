@@ -71,6 +71,16 @@ export default {
             ) {
                 this.adminStore.subCloseMaterialWarning(false)
             }
+            else if (
+                this.strParent === 'TutorWorkshop'
+            ) {
+                this.adminStore.subCloseTutorWorkshopWarning(false)
+            }
+            else if (
+                this.strParent === 'Report-Student'
+            ){
+                this.adminStore.subCloseStudentReportError(false)
+            }
             else
             {
                 this.studentStore.setBoolShowErrorMessage(false);

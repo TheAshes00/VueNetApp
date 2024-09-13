@@ -6,6 +6,14 @@ namespace VueAppTest1Back.DAO
     public class TutTutorDao
     {
         //--------------------------------------------------------------------------------
+        public static List<Tutor> tutGetAllactiveTutor(
+            CaafiContext context_I
+            )
+        {
+            return context_I.Tutor.Where(t => t.boolActive).ToList();
+        }
+
+        //--------------------------------------------------------------------------------
         public static List<Tutor> tutGetAllTutor(
             CaafiContext context_I
             )

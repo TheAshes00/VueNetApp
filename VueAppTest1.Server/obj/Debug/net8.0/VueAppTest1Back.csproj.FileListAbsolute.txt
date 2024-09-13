@@ -113,6 +113,7 @@ C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bi
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\VueAppTest1Back.runtimeconfig.json
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\VueAppTest1Back.dll
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\VueAppTest1Back.pdb
+C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\Humanizer.dll
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\Microsoft.AspNetCore.SpaProxy.dll
@@ -221,4 +222,3 @@ C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\ob
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\obj\Debug\net8.0\VueAppTest1Back.pdb
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\obj\Debug\net8.0\VueAppTest1Back.genruntimeconfig.cache
 C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\obj\Debug\net8.0\ref\VueAppTest1Back.dll
-C:\Users\ferna\OneDrive\Documentos\GitProjects\VueAppTest1\VueAppTest1.Server\bin\Debug\net8.0\BCrypt.Net-Next.dll

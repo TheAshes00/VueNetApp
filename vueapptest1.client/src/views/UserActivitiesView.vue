@@ -5,6 +5,7 @@ import PopupWarning from "@/components/PopUpWarning.vue"
 import { useStudentStore } from '@/stores/student';
 import PopupSuccess from '@/components/PopupSuccess.vue';
 import ReturnMaterial from '@/components/ReturnMaterial.vue';
+import TutorWorkshop from '@/components/TutorWorkshop.vue';
 
 export default{
   setup(){
@@ -16,7 +17,8 @@ export default{
     HeaderComponent,
     PopupWarning,
     PopupSuccess,
-    ReturnMaterial
+    ReturnMaterial,
+    TutorWorkshop
   },
   data(){
       return {
@@ -67,6 +69,14 @@ export default{
     </PopupSuccess>
   </Transition>
 
+  <Transition>
+    <!-- Popup success component, using slot to display corresponing completed message -->
+    <PopupSuccess v-if="(userStore.boolWorkshopAttendanceCompleted)" 
+      :strComponent="'Activities-Workshop'"
+    >
+      Workshop attendance registered
+    </PopupSuccess>
+  </Transition>
 
     <HeaderComponent/>
   
@@ -131,6 +141,9 @@ export default{
       </div>
       <div v-else-if="strActionSelected === 'return'">
         <ReturnMaterial/>
+      </div>
+      <div v-else-if="strActionSelected === 'workshop'">
+        <TutorWorkshop/>
       </div>
 </template>
 

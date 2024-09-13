@@ -10,7 +10,7 @@ namespace VueAppTest1Back.Models
         [Key]
         [Column("Pk")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int? intPk { get; set; }
+        public int intPk { get; set; }
 
         [Column("Taller", TypeName ="varchar(60)")]
         public String strWorkshop { get; set; }

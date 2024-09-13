@@ -81,7 +81,7 @@ export default {
                 this.boolIsLoading = true;
 
                 let objPages = {
-                    intPageNumber: this.intPageNumber,
+                    intPageNumber: 1,
                     intPageSize: 5,
                     strSearch: this.strSearch
                 }
@@ -205,12 +205,17 @@ export default {
             if(
                 this.objSelectedElement.strName &&
                 this.objSelectedElement.strSurename &&
-                this.objSelectedElement.byteGender &&
+                //this.objSelectedElement.byteGender &&
                 this.objSelectedElement.strBachelors
             )
             {
                 boolIsValid = true
             }
+
+            console.log(this.objSelectedElement.strIdentification == null)
+            console.log(this.objSelectedElement.strIdentification != null)
+            console.log(this.objSelectedElement.strIdentification.length != 7)
+            console.log(this.objSelectedElement.strIdentification.length != 5)
 
             if(
                 !this.boolEditInModal &&
@@ -218,10 +223,8 @@ export default {
                     this.objSelectedElement.strIdentification == null  ||
                     (
                         this.objSelectedElement.strIdentification != null &&
-                        (
-                            this.objSelectedElement.strIdentification.length != 7 ||
-                            this.objSelectedElement.strIdentification.length != 5
-                        )
+                        this.objSelectedElement.strIdentification.length != 7 &&
+                        this.objSelectedElement.strIdentification.length != 5
                     )
                 )
             ) {

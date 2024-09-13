@@ -77,7 +77,7 @@ export default {
                 this.boolIsLoading = true;
 
                 let objPages = {
-                    intPageNumber: this.intPageNumber,
+                    intPageNumber: 1,
                     intPageSize: 5,
                     strSearch: this.strSearch
                 }
@@ -241,14 +241,18 @@ export default {
                 <label for="workshop-name" class="col-form-label">Name:</label>
                 <input type="text" class="form-control" id="recipient-name" v-model="objSelectedElement.strWorkshop">
               </div>
+
               <div class="mb-3 form-switch">
-                <label for="switch-check">Status</label>
-                <label class="switch">
-					<input type="checkbox" name="switch-check" id="switch-check" 
-                        v-model="objSelectedElement.boolActive" :disabled="!boolEditInModal">
-					<span class="slider round"></span>
-				</label>
-              </div>
+                    <label for="switch-check-in">Status</label>
+                    <div id="switch-check">
+                        <label class="switch">
+                            <input type="checkbox" name="switch-check-in" id="switch-check-in" 
+                                v-model="objSelectedElement.boolActive" :disabled="!boolEditInModal"
+                                required>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -276,6 +280,9 @@ export default {
     </div>
     <!-- END MODAL -->
 
+    <h3>
+        Add / Edit Workshop
+    </h3>
     <div class="center-box">
         <button type="button" id="bt_add" class="border-button button-align" v-on:click="subAddNew"> 
             Add New Workshop
@@ -388,6 +395,7 @@ export default {
     margin-top: 1em;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .switch {
     position: relative;

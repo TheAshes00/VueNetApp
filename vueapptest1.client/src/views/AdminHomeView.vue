@@ -1,7 +1,26 @@
+<script>
+import { useAdminStore } from '@/stores/admin';
+import { useStudentStore } from '@/stores/student';
+
+export default {
+    setup(){
+        const studentStore = useStudentStore();
+        const adminStore = useAdminStore();
+        return { studentStore, adminStore }
+    },
+    methods: {
+        closeAdminSession(){
+            this.studentStore.$reset(); 
+            this.adminStore.$reset();
+            this.$router.push('/')
+        }
+    }
+}
+</script>
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Admin</a>
+            <a class="navbar-brand" v-on:click="closeAdminSession">Logout</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

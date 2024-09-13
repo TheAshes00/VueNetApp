@@ -183,7 +183,7 @@ namespace VueAppTest1Back.Controllers
             [FromQuery]
             DateTime dateStart,
             [FromQuery]
-            DateTime dateEnd
+            DateTime? datenEnd
             )
         {
             CaafiContext context = new CaafiContext();
@@ -199,8 +199,10 @@ namespace VueAppTest1Back.Controllers
             }
             else
             {
-                AdmAdmin.subGetstudentReport(context,strNmCta,dateStart,dateEnd, out servans);
+                AdmAdmin.subGetstudentReport(context,strNmCta,dateStart, datenEnd, 
+                    out servans);
             }
+
             IActionResult iresult = base.Ok(servans);
             return iresult;
         }
@@ -208,14 +210,22 @@ namespace VueAppTest1Back.Controllers
         //--------------------------------------------------------------------------------
         [HttpGet("[action]")]
         public IActionResult GetTutorReport(
+            [FromQuery]
+            int intPkTutor,
+            [FromQuery]
+            DateTime dateStart,
+            [FromQuery]
+            DateTime? datenEnd
             )
         {
             using var context = new CaafiContext();
 
             ServansdtoServiceAnswerDto servans;
 
+            TutworTutorWorkshop.subGetTutorReport(context, intPkTutor, dateStart, 
+                datenEnd, out servans);
 
-            IActionResult iresult = base.Ok();
+            IActionResult iresult = base.Ok(servans);
             return iresult;
         }
         //--------------------------------------------------------------------------------

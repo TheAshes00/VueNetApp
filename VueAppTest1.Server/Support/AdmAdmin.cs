@@ -86,13 +86,23 @@ namespace VueAppTest1Back.Support
             CaafiContext context_I,
             string strNumCta_I,
             DateTime dateStart_I,
-            DateTime dateEnd_I,
+            DateTime? dateEnd_I,
             out ServansdtoServiceAnswerDto servans_O
             )
         {
-            //                                              //Validate strNumCta
+            DateTime dateTime;
+            if(
+                dateEnd_I == null
+                )
+            {
+                dateTime = DateTime.Now;
+            }
+            else
+            {
+                dateTime = (DateTime)dateEnd_I;
+            }
 
-            
+            //                                              //Validate strNumCta
             if (
                 !StudaoStudentDao.boolValidatePk(context_I, strNumCta_I)
                 )
@@ -104,7 +114,7 @@ namespace VueAppTest1Back.Support
             {
 
                 Student? studentWithLoansAndWorkshop = stuGetStudentWithIncludes(
-                    context_I, strNumCta_I, dateStart_I, dateEnd_I);
+                    context_I, strNumCta_I, dateStart_I, dateTime);
 
                 GetrepbystuGetReportByStudent.Out getrepstuout = 
                     studentWithLoansAndWorkshop != null ? 
@@ -146,8 +156,9 @@ namespace VueAppTest1Back.Support
                     {
                         strDate = loan.LoanDate.ToString("dd-MM-yyyy"),
                         strHour = loan.TimeStart.ToString(),
-                        arrstrMaterial = loan.IcMaterialLoanEntity.Select(
-                            matloa => matloa.MaterialEntity.strName).ToArray()
+                        arrstrMaterial = loan.IcMaterialLoanEntity
+                        .Select(matloa => matloa.MaterialEntity.strName)
+                        .ToArray()  // Convierte a array después de recorrer todos
                     }).ToArray(),
 
                 arrWorkshopReport = studentWithLoansAndWorkshop_I.
@@ -155,10 +166,11 @@ namespace VueAppTest1Back.Support
                         woratt => new GetrepbystuGetReportByStudent.Out.WorkshopReport
                         {
                             strDate = woratt.DateWorkshopDate.ToString("dd-MM-yyyy"),
-                            strHour = woratt.TimeCheckInTime.ToString(),
+                            strHour = woratt.TimeCheckInTime.ToString(@"hh\:mm"),
                             strWorkshopName = woratt.TutorWorkshopEntity.WorkshopEntity.
                                 strWorkshop,
-                            strTutorName = woratt.TutorWorkshopEntity.TutorEntity.strName
+                            strTutorName = woratt.TutorWorkshopEntity.TutorEntity.strName 
+                                + " " + woratt.TutorWorkshopEntity.TutorEntity.strSurename
                         }).ToArray()
             };
 
@@ -179,10 +191,15 @@ namespace VueAppTest1Back.Support
                                 wa.DateWorkshopDate <= DateEnds_I)
                             || s.IcLoanEntity.Any(l =>
                                 l.LoanDate >= DateStart_I &&
-                                l.LoanDate <= DateEnds_I)))
-                .Include(s => s.IcWorkshopAttendanceEntity)
+                                l.LoanDate <= DateEnds_I)
+                            )
+                )
+                .Include(s => s.IcWorkshopAttendanceEntity )
                     .ThenInclude(wa => wa.TutorWorkshopEntity)
-                        .ThenInclude(tw => tw.WorkshopEntity)
+                        .ThenInclude(z => z.WorkshopEntity)
+                .Include(s => s.IcWorkshopAttendanceEntity)
+                    .ThenInclude(s => s.TutorWorkshopEntity)
+                        .ThenInclude(s => s.TutorEntity)
                 .Include(s => s.IcLoanEntity)
                     .ThenInclude(l => l.IcMaterialLoanEntity)
                         .ThenInclude(ml => ml.MaterialEntity)

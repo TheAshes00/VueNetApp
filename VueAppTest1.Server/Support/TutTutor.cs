@@ -29,7 +29,7 @@ namespace VueAppTest1Back.Support
             //                                              // number, and page size
             int intSkip = (intPageNumber_I - 1) * intPageSize_I;
 
-            List<Tutor> arrtutentity = TutTutorDao.tutGetAllTutor(context_I); 
+            List<Tutor> arrtutentity = TutTutorDao.tutGetAllTutor(context_I);
 
             int intTotalTutors = arrtutentity.Count;
 
@@ -46,17 +46,20 @@ namespace VueAppTest1Back.Support
             }
             else
             {
-                darrPaginatedTutors = arrtutentity
+                List<Tutor> darrtutFilteredTutor = arrtutentity
                     .Where(t => t.strName.Contains(strSearch_I,
-                        StringComparison.CurrentCultureIgnoreCase))
-                    .OrderByDescending(w => w.intPk)
+                        StringComparison.CurrentCultureIgnoreCase)
+                    ).ToList();
+
+
+                intTotalTutors = darrtutFilteredTutor.Count;
+
+                darrPaginatedTutors = darrtutFilteredTutor
+                    .OrderByDescending(t => t.intPk)
                     .Skip(intSkip)
                     .Take(intPageSize_I)
                     .ToList();
-
-                intTotalTutors = darrPaginatedTutors.Count;
             }
-
 
             servans_O = new ServansdtoServiceAnswerDto(200,
                 Tools.Auxiliar.Paginate.objpagoutPaginateEntity(intTotalTutors, intPageNumber_I,
@@ -70,7 +73,7 @@ namespace VueAppTest1Back.Support
             out ServansdtoServiceAnswerDto servans_O
             )
         {
-            if(
+            if (
                 getsettutin_I.intnPk != null
                 )
             {
@@ -125,15 +128,17 @@ namespace VueAppTest1Back.Support
 
                 tutentity.strBachelors = Tools.Auxiliar.TextHelper.strTitleCase(
                     getsettutin_I.strBachelors);
-                
+
                 tutentity.boolActive = getsettutin_I.boolActive;
                 tutentity.byteGender = getsettutin_I.byteGender;
                 tutentity.strIdentification = getsettutin_I.strIdentification;
-                
+
                 tutentity.strName = Tools.Auxiliar.TextHelper.strTitleCase(
                     getsettutin_I.strName);
 
                 TutTutorDao.subUpdate(context_I, tutentity);
+
+                TutworTutorWorkshop.subExcecuteUpdate(context_I, null, tutentity);
 
                 servans_O = new(200, null);
             }
@@ -141,6 +146,27 @@ namespace VueAppTest1Back.Support
         }
 
         //--------------------------------------------------------------------------------
+        public static void subGetAllActiveTutor(
+            CaafiContext context_I,
+            out ServansdtoServiceAnswerDto servans_O
+            )
+        {
+            List<Tutor> darrtutentity = TutTutorDao.tutGetAllactiveTutor(context_I);
+
+            servans_O = new(200, darrtutentity);
+        }
+
+        //--------------------------------------------------------------------------------
+        public static void subGetAllTutor(
+            CaafiContext context_I,
+            out ServansdtoServiceAnswerDto servans_O
+            )
+        {
+            List<Tutor> darrtutentity = TutTutorDao.tutGetAllTutor(context_I);
+
+            servans_O = new(200, darrtutentity);
+        }
+
         //--------------------------------------------------------------------------------
 
     }

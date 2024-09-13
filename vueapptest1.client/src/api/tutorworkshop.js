@@ -1,12 +1,12 @@
-import axios from "axios"
+import axios from "axios";
 const strApiUrl = import.meta.env.VITE_API_URL;
 
 export default {
     //------------------------------------------------------------------------------------
-    async objGetPaginatedTutors(
+    async subGetPaginatedTutorWorkshop(
         objPages_I
-    ){
-        let strUrl = strApiUrl +"/Tutor/GetPaginatedTutors?" 
+    ) {
+        let strUrl = strApiUrl +"/TutorWorkshop/GetPaginatedTutorWorkshops?" 
             +"intPageNumber=" + objPages_I.intPageNumber +
             "&intPageSize="+ objPages_I.intPageSize 
             +"&strSearch="+ (objPages_I.strSearch == null ? "" : objPages_I.strSearch);
@@ -24,19 +24,20 @@ export default {
     },
 
     //------------------------------------------------------------------------------------
-    async subSetTutor(
-        objTutor_I
+    async subSetTutorWorkshop(
+        objTutorWorkshop_I
     ) {
-        let strUrl = strApiUrl +"/Tutor/" +
-            (objTutor_I.intPk == null ? "SetTutor" : "UpdateTutor");
+        //                                                  // Set timespan format
+        
+        let strUrl = strApiUrl +"/TutorWorkshop/" +( 
+            objTutorWorkshop_I.intPk == null ? "SetTutorWorkshop" : "UpdateTutorWorkshop")
             
         let objResponse = {
             intStatus : 400,
             strUserMessage : ""
         };
-
         try{
-            let objApiResponse = await axios.post(strUrl,objTutor_I);
+            let objApiResponse = await axios.post(strUrl,objTutorWorkshop_I);
 
             if(
                 objApiResponse.data.intStatus == 200
@@ -50,48 +51,23 @@ export default {
 
         }
         catch(Ex){
-            console.error("Error while setting tutor", Ex);
-            objResponse.strUserMessage = "Invalid Data"
+            objResponse.strUserMessage = "Something wrong";
+            console.error("Error while setting tutor workshop", Ex)
         }
 
         return objResponse;
         
     },
 
-    //--------------------------------------------------------------------------------
-    async subGetGetAllActiveTutors(
-        //
-    ) {
-        let strUrl = strApiUrl +"/Tutor/GetAllActiveTutors";
+    //------------------------------------------------------------------------------------
+    async subGetFilteredTutors(
+        intPkWorkshop_I
+    ){
+        let strUrl = strApiUrl +"/TutorWorkshop/GetWorkshopTutor/"+intPkWorkshop_I;
 
         let objApiResponse = await axios.get(strUrl);
 
-        let arrobjTutor = [];
-        if(
-            objApiResponse.data.intStatus == 200
-        ) {
-            arrobjTutor = objApiResponse.data.objResponse
-        }
-
-        return arrobjTutor
-    },
-
-    //--------------------------------------------------------------------------------
-    async subGetGetAllTutors(
-        //
-    ) {
-        let strUrl = strApiUrl +"/Tutor/GetAllTutors";
-
-        let objApiResponse = await axios.get(strUrl);
-
-        let arrobjTutor = [];
-        if(
-            objApiResponse.data.intStatus == 200
-        ) {
-            arrobjTutor = objApiResponse.data.objResponse
-        }
-
-        return arrobjTutor
+        return objApiResponse.data
     },
 
     //------------------------------------------------------------------------------------

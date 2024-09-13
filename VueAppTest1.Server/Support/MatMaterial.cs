@@ -169,25 +169,19 @@ namespace VueAppTest1Back.Support
             }
             else
             {
-                darrPaginatedMaterials = arrmatentity
-                    .Where(cw => cw.strName.Contains(strSearch_I, 
-                        StringComparison.CurrentCultureIgnoreCase))
+                var darrPaginatedMaterialsFiltered = arrmatentity
+                    .Where(cw => cw.strName.Contains(strSearch_I,
+                        StringComparison.CurrentCultureIgnoreCase)
+                    ).ToList();
+
+                intTotalMaterial = darrPaginatedMaterialsFiltered.Count;
+
+                darrPaginatedMaterials = darrPaginatedMaterialsFiltered
                     .OrderByDescending(w => w.strNumCtrlInt)
                     .Skip(intSkip)
                     .Take(intPageSize_I)
                     .ToList();
-
-                intTotalMaterial = darrPaginatedMaterials.Count;
             }
-            
-            
-            //ObjpagObjPaginateDto.Out objpagObjPaginateDto = new ObjpagObjPaginateDto.Out 
-            //{
-            //    intTotalCount = intTotalWorkshops,
-            //    intPageNumber = intPageNumber_I,
-            //    intPageSize = intPageSize_I,
-            //    objPaginatedObject = darrPaginatedWorkshops
-            //};
 
             servans_O = new ServansdtoServiceAnswerDto(200,
                 Tools.Auxiliar.Paginate.objpagoutPaginateEntity(intTotalMaterial, 

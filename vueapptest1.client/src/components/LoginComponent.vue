@@ -41,15 +41,23 @@ export default {
             )
             {
                 if(
-                    this.boolAdminCommand
+                    this.boolAdminCommand 
                 ) {
-                    await this.adminStore.subLoginAdmin(this.objAdmin)
-
                     if(
-                        !this.adminStore.boolAdminLoginError
+                        this.objAdmin.strPassword &&
+                        this.objAdmin.strUsername
                     ){
-                        this.$router.push('/admin');
+                        await this.adminStore.subLoginAdmin(this.objAdmin)
+
+                        let boolLoginError = this.adminStore.boolGetBoolAdminLoginError;
+                        console.log(boolLoginError)
+                        if(
+                            !boolLoginError
+                        ){
+                            this.$router.push('/admin');
+                        }
                     }
+                    
                 } 
                 else
                 {

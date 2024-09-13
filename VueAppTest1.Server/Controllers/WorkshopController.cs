@@ -5,6 +5,8 @@ using System.Data.Common;
 using VueAppTest1Back.Context;
 using VueAppTest1Back.DTO;
 using VueAppTest1Back.DTO.Workshop;
+using VueAppTest1Back.DTO.WorkshopAttendance;
+using VueAppTest1Back.Models;
 using VueAppTest1Back.Support;
 
 namespace VueAppTest1Back.Controllers
@@ -125,6 +127,75 @@ namespace VueAppTest1Back.Controllers
             return aresult;
         }
 
+
+        //--------------------------------------------------------------------------------
+        [HttpGet("[action]")]
+        public IActionResult GetAllActiveWorkshops(
+            )
+        {
+            CaafiContext context = new CaafiContext();
+
+            ServansdtoServiceAnswerDto servans;
+
+            try
+            {
+
+                WorWorkshop.subGetAllActiveWorkshops(context, out servans);
+            }
+            catch (Exception ex)
+            {
+                servans = new(400, "Something wrong", ex.Message, ex.Data);
+            }
+
+            IActionResult aresult = base.Ok(servans);
+            return aresult;
+        }
+
+        //--------------------------------------------------------------------------------
+        [HttpPost("[action]")]
+        public IActionResult SetWorkshopAttendance(
+            [FromBody]
+            GetsetworattGetSetWorkshopAttendanceDto.In getsetworatt
+            )
+        {
+            DateTime dateNow = DateTime.Now;
+
+            CaafiContext context = new CaafiContext();
+            using var transaction = context.Database.BeginTransaction();
+            transaction.CreateSavepoint("beforeAddWorkshopAttendance");
+            ServansdtoServiceAnswerDto servans;
+
+            try
+            {
+                if (
+                !ModelState.IsValid
+                )
+                {
+                    servans = new ServansdtoServiceAnswerDto(400, "Invalid data",
+                        "Invalid Modelstate", ModelState.Keys);
+                }
+                else
+                {
+                    WorWorkshop.subSetWorkshopAttendance(context, getsetworatt, dateNow,
+                        out servans);
+
+                    if (
+                        servans.intStatus == 200
+                        )
+                    {
+                        transaction.Commit();
+                    }
+                }
+            }
+            catch (Exception ex) 
+            {
+                transaction.RollbackToSavepoint("beforeAddWorkshopAttendance");
+                servans = new(400, "Error", ex.Message,ex.StackTrace);
+            }
+
+            IActionResult iresult = base.Ok(servans);
+            return iresult;
+        }
 
         //--------------------------------------------------------------------------------
     }

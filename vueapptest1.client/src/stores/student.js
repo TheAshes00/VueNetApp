@@ -24,6 +24,7 @@ export const useStudentStore = defineStore ('student',
         boolReturnCompleted: false,
         boolReturnError: false,
         boolShowReturnError: false,
+        boolWorkshopAttendanceCompleted: false,
 
     }),
     getters: {
@@ -231,6 +232,19 @@ export const useStudentStore = defineStore ('student',
         ) {
             this.boolShowReturnError = boolShowReturnError_I
             this.strUserMessage = "";
+        },
+
+        //------------------------------------------------------------------------------------
+        async subSetWorkshopAttendance(
+            objWorkshopAttendance_I
+        ) {
+            let boolCompleted = await students.setWorkshopAttendance(objWorkshopAttendance_I);
+
+            if(
+                boolCompleted
+            ) {
+                this.boolWorkshopAttendanceCompleted = true;
+            }
         },
 
         //------------------------------------------------------------------------------------

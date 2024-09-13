@@ -28,7 +28,7 @@ namespace VueAppTest1Back.Models
         [ForeignKey("Tutor")]
         public int intPkTutor { get; set; }
 
-        public virtual Tutor TutorEntity { get; set; }
+        public Tutor TutorEntity { get; set; }
 
         public Workshop WorkshopEntity {  get; set; }
 

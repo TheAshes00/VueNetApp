@@ -71,4 +71,22 @@ export default{
     },
 
     //------------------------------------------------------------------------------------
+    async setWorkshopAttendance(
+        objWorkshopAttendance_I
+    ) {
+        let strUrl = strApiUrl + "/Workshop/SetWorkshopAttendance";
+        
+        let objApiResponse = await axios.post(strUrl,objWorkshopAttendance_I);
+
+        let boolCompleted = false;
+
+        if(
+            objApiResponse.data.intStatus == 200
+        ) {
+            boolCompleted = true;
+        }
+
+        return boolCompleted;
+    },
+    //------------------------------------------------------------------------------------
 }

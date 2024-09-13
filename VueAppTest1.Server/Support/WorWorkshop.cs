@@ -6,6 +6,7 @@ using VueAppTest1Back.DAO;
 using VueAppTest1Back.DAO.Interfaces;
 using VueAppTest1Back.DTO;
 using VueAppTest1Back.DTO.Workshop;
+using VueAppTest1Back.DTO.WorkshopAttendance;
 using VueAppTest1Back.Models;
 using VueAppTest1Back.Tools;
 
@@ -67,9 +68,9 @@ namespace VueAppTest1Back.Support
                     getsetworin_I.strWorkshop);
                 worentity.boolActive = getsetworin_I.boolActive;
 
-                
-
                 worint.subUpdateWorkshop(context_I, worentity);
+
+                TutworTutorWorkshop.subExcecuteUpdate(context_I, worentity, null);
 
                 servans_O = new(200, null);
             }
@@ -98,6 +99,7 @@ namespace VueAppTest1Back.Support
             int intTotalWorkshops = arrworentity.Count;
 
             List<Workshop> darrPaginatedWorkshops;
+
             if (
                 strSearch_I.IsNullOrEmpty()
                 )
@@ -110,31 +112,72 @@ namespace VueAppTest1Back.Support
             }
             else
             {
-                darrPaginatedWorkshops = arrworentity
-                    .Where(cw => cw.strWorkshop.Contains(strSearch_I, 
-                        StringComparison.CurrentCultureIgnoreCase))
+
+                List<Workshop> darrworentityFilteredWorkshops = arrworentity
+                    .Where(cw => cw.strWorkshop.Contains(strSearch_I,
+                        StringComparison.CurrentCultureIgnoreCase)
+                    ).ToList();
+
+
+                intTotalWorkshops = darrworentityFilteredWorkshops.Count;
+
+                darrPaginatedWorkshops= darrworentityFilteredWorkshops
                     .OrderByDescending(w => w.intPk)
                     .Skip(intSkip)
                     .Take(intPageSize_I)
                     .ToList();
 
-                intTotalWorkshops = darrPaginatedWorkshops.Count;
             }
-            
-            
-            //ObjpagObjPaginateDto.Out objpagObjPaginateDto = new ObjpagObjPaginateDto.Out 
-            //{
-            //    intTotalCount = intTotalWorkshops,
-            //    intPageNumber = intPageNumber_I,
-            //    intPageSize = intPageSize_I,
-            //    objPaginatedObject = darrPaginatedWorkshops
-            //};
 
             servans_O = new ServansdtoServiceAnswerDto(200,
                 Tools.Auxiliar.Paginate.objpagoutPaginateEntity(intTotalWorkshops, 
                 intPageNumber_I,intPageSize_I, darrPaginatedWorkshops));
         }
-        
+
+        //--------------------------------------------------------------------------------
+        public static void subGetAllActiveWorkshops(
+            CaafiContext context_I,
+            out ServansdtoServiceAnswerDto servans_O
+            )
+        {
+            List<Workshop> darrworkentity = context_I.Workshop.Where(
+                t => t.boolActive).ToList();
+
+            servans_O = new(200, darrworkentity);
+        }
+
+        //--------------------------------------------------------------------------------
+        public static void subSetWorkshopAttendance(
+            CaafiContext context_I,
+            GetsetworattGetSetWorkshopAttendanceDto.In getsetworatt_I,
+            DateTime dateNow_I,
+            out ServansdtoServiceAnswerDto servans_O
+            )
+        {
+            if (
+                StudaoStudentDao.boolValidatePk(context_I, getsetworatt_I.strNmCta) &&
+                TutworTutorWorkshopDao.boolValidatePk(
+                    context_I, getsetworatt_I.intPkTutorWorkshop)
+                )
+            {
+                WorkshopAttendance worattentity = new();
+
+                worattentity.intPkTutorWorkshop = getsetworatt_I.intPkTutorWorkshop;
+                worattentity.strPkStudent = getsetworatt_I.strNmCta;
+                worattentity.DateWorkshopDate = dateNow_I.Date;
+                worattentity.TimeCheckInTime = dateNow_I.TimeOfDay;
+
+                WorattWorkshopAttendanceDao.subAdd(context_I, worattentity);
+
+                servans_O = new(200, null);
+            }
+            else
+            {
+                servans_O = new(400, "Invalid data", 
+                    "Some of the primary keys do not exist", getsetworatt_I);
+            }
+        }
+
         //--------------------------------------------------------------------------------
     }
 }
