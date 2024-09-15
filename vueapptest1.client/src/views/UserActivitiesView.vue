@@ -6,11 +6,13 @@ import { useStudentStore } from '@/stores/student';
 import PopupSuccess from '@/components/PopupSuccess.vue';
 import ReturnMaterial from '@/components/ReturnMaterial.vue';
 import TutorWorkshop from '@/components/TutorWorkshop.vue';
+import { useAdminStore } from '@/stores/admin';
 
 export default{
   setup(){
     const userStore = useStudentStore();
-    return { userStore }
+    const adminStore = useAdminStore();
+    return { userStore, adminStore }
   },
   components:{
     Material,
@@ -29,7 +31,11 @@ export default{
   methods:{
     goHome(){
       this.$router.push("/");
-    }
+    },
+
+    //------------------------------------------------------------------------------------
+
+    //------------------------------------------------------------------------------------
   },
 };
 </script>
@@ -115,21 +121,21 @@ export default{
   <div class="register-options">
       <div class="form-check">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-          value="material" v-model="strActionSelected">
+          value="material" v-model="strActionSelected" v-on:click="adminStore.subGetResetMessage">
         <label class="form-check-label" for="flexRadioDefault1">
           Material Loan
         </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-          value="workshop" v-model="strActionSelected">
+          value="workshop" v-model="strActionSelected" v-on:click="adminStore.subGetResetMessage">
         <label class="form-check-label" for="flexRadioDefault2">
           Workshop
         </label>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
-          value="return" v-model="strActionSelected">
+          value="return" v-model="strActionSelected" v-on:click="adminStore.subGetResetMessage">
         <label class="form-check-label" for="flexRadioDefault3">
           Return material
         </label>

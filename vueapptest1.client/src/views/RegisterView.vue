@@ -12,22 +12,22 @@
     User registration completed succesfully
   </PopupSuccess>
   <div>
-    <h2>Registro de usuario</h2>
+    <h2>User Register</h2>
     <div class="">
-      <h3 class="p-ub">Selecciona uno:</h3>
+      <h3 class="p-ub">Choose one:</h3>
       <div class="register-options">
         <div class="form-check">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" 
             value="student" v-model="strUserSelected">
           <label class="form-check-label" for="flexRadioDefault1">
-            Alumno
+            Student
           </label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" 
             value="teacher" v-model="strUserSelected">
           <label class="form-check-label" for="flexRadioDefault2">
-            Docente
+            Teacher
           </label>
         </div>
       </div>
@@ -37,12 +37,12 @@
       <form v-on:submit.prevent="subSetNewUser">
         <div class="form-half">
           <div class="top">
-            <label class="label-text" for="name-new">Nombre:</label>
+            <label class="label-text" for="name-new">Name:</label>
             <input type="text" name="name-new" id="name-new" placeholder="Ex: Molly" 
               v-model="objNewUser.strName" 
               required>
 
-            <label for="surename-new">Apellido:</label>
+            <label for="surename-new">Surename:</label>
             <input class="label-text" type="text" name="surename-new" id="surename-new" 
               placeholder="Ex: Evans" v-model="objNewUser.strSurename" 
               required>
@@ -51,7 +51,7 @@
 
           <div class="middle">
             <label class="label-text" for="nmcta-new"> 
-              {{  (this.strUserSelected === "student" ? "Número de cuenta:" : "Número de empleado") }}
+              {{  (this.strUserSelected === "student" ? "Accoun Number:" : "Employee ID") }}
             </label>
             <input type="text" name="nmcta-new" id="nmcta-new" placeholder="Ex: 1110038" 
               maxlength="7" v-model="objNewUser.strNmCta" v-if="this.strUserSelected === 'student'" 
@@ -60,10 +60,12 @@
             <input class="label-text" type="text" name="nmcta-new" id="nmcta-new" 
               placeholder="Ex: 11138" maxlength="5" v-model="objNewUser.strNmCta" required v-else>
 
-            <label class="label-text" for="orgacd-new">Organismo académico:</label>
+            <label class="label-text" for="orgacd-new">Academic Entity:</label>
             <select name="orgacd-new" id="orgacd-new" v-if="studentStore.arrAcademicEntities != []" 
-              v-model="objNewUser.intPkAcademy" required>
-              <option value="" disabled>Seleccione una:</option>
+              v-model="objNewUser.intPkAcademy" v-on:change="subOnChangeSelect"
+              required
+            >
+              <option value="" disabled>Choose one...</option>
               <optgroup v-for="objAcademyType in studentStore.arrAcademicEntities" 
                 :key="objAcademyType.strGroupName" :label="objAcademyType.strGroupName"
               >
@@ -78,29 +80,37 @@
 
           <div class="bottom" v-if="objNewUser.intPkAcademy">  
             <div class="register-options">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="licenciatura" name="licenciatura" value="lic" 
+              <div class="form-check" v-if="boolCheckUni()">
+                <input class="form-check-input" type="radio" id="prepa" name="prepa" value="Preparatoria" 
                 v-model="strBachelorDegree">
-                <label class="form-check-label" for="licenciatura">Licenciatura</label><br>
+                <label class="form-check-label" for="prepa">High School</label><br>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="maestria" name="licenciatura" value="ma" 
-                v-model="strBachelorDegree">
-                <label class="form-check-label" for="maestria">Maestría</label><br>
+              <div class="register-options" v-else>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="licenciatura" name="licenciatura" value="lic" 
+                  v-model="strBachelorDegree">
+                  <label class="form-check-label" for="licenciatura">Bachelors</label><br>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="maestria" name="licenciatura" value="ma" 
+                  v-model="strBachelorDegree">
+                  <label class="form-check-label" for="maestria">Masters</label><br>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" id="doctorado" name="licenciatura" value="doc" 
+                  v-model="strBachelorDegree">
+                  <label class="form-check-label" for="doctorado">PhD</label>
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="doctorado" name="licenciatura" value="doc" 
-                v-model="strBachelorDegree">
-                <label class="form-check-label" for="doctorado">Doctorado</label>
-              </div>
+              
             </div>
           </div>
         </div>
         <div class="form-half" v-if="strBachelorDegree">
           <div class="form-half-select" v-if="strBachelorDegree==='lic' && objNewUser.intPkAcademy == 1">
-            <label>Especifique:   </label>
+            <label>Which one:   </label>
             <select id="carrera" v-model="objNewUser.strBachelors" required>
-              <option value="" class="form-control" disabled>Selecciona uno...</option>
+              <option value="" class="form-control" disabled>Choose one...</option>
               <option value="ICO" class="form-control">ICO</option>
               <option value="IME" class="form-control">IME</option>
               <option value="ICI" class="form-control">ICI</option>
@@ -111,13 +121,15 @@
 
           <div class="form-half-input" 
             v-else>
-            <label for="mas-nombre">Especifique:</label>
-            <input type="text" id="mas-nombre" v-model.lazy="objNewUser.strBachelors" required>
+            <label for="mas-nombre">{{ !boolCheckUni() ? 'Which one:' : '' }}</label>
+            <input type="text" id="mas-nombre" v-model.lazy="objNewUser.strBachelors" 
+              required :disabled="boolCheckUni()"
+            >
           </div>
         </div>
-        <div class="button-container ">
-          <button type="submit" class="color-button shadow-box" v-if="!boolLoading">
-            Registrar usuario
+        <div class="button-container button-align">
+          <button type="submit" class="color-button shadow-box button-align" v-if="!boolLoading">
+            Register
           </button>
           <LoaderComponent v-else/>
         </div>
@@ -221,10 +233,43 @@ export default {
     },
 
     //------------------------------------------------------------------------------------
+    boolCheckUni(
+    ) {
+      let boolTest = false;
+      if(
+        this.objNewUser.intPkAcademy
+      ){
+        let objByGroup = this.studentStore.arrAcademicEntities.find(
+          x => x.strGroupName === "Preparatoria");
+
+
+        let arrobjAcademy = objByGroup.darrAcademies
+
+        let obj = arrobjAcademy.find(x => x.intPk == this.objNewUser.intPkAcademy)
+
+        if(
+          obj && 
+          this.strUserSelected === 'student'
+        ){
+          this.objNewUser.strBachelors = "Preparatoria"
+          boolTest = true;
+        }
+      }
+
+      return boolTest
+        
+    },
+
+    //------------------------------------------------------------------------------------
+    subOnChangeSelect(){
+      this.objNewUser.strBachelors = ""
+    }
+
+    //------------------------------------------------------------------------------------
 
 
   },
-  async mounted(){
+  async created(){
     this.getAcademicEntities();
   }
 }

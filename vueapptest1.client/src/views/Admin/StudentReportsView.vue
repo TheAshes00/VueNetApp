@@ -211,4 +211,9 @@ export default {
 .row-color{
     color: #c7ffc2;
 }
+
+    #material-list{
+        max-height: 100px;
+    }
+
 </style>

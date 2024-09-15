@@ -36,7 +36,7 @@ export default {
 <template>
     <LoginComponent/>
     <div class="link">
-      <RouterLink to="/register" class="shadow-box">¿Primera vez? Registrate</RouterLink>
+      <RouterLink to="/register" class="shadow-box">Sign In</RouterLink>
     </div>
 </template>
 

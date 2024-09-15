@@ -41,7 +41,8 @@ namespace VueAppTest1Back.Support
                         darrAcademies = darr.Select(ac => new GetacaGetAcademicEntitiesDto.Academy
                         {
                             intPk = ac.intPk,
-                            strAcademyName = ac.strAcademyName
+                            strAcademyName = ac.strAcademyName,
+
                         }).ToList(),
                     }
                     ).ToList();

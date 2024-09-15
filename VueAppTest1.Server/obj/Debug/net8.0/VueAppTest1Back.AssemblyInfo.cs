@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VueAppTest1Back")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81f5d7351650a2555c8c7d5c86370e7dff5517aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37bca3d9f6521e0a2dcfc77ec6d4f593ff509704")]
 [assembly: System.Reflection.AssemblyProductAttribute("VueAppTest1Back")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VueAppTest1Back")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

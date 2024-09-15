@@ -296,6 +296,13 @@ export const  useAdminStore = defineStore('admin',{
         },
         
         //--------------------------------------------------------------------------------
+        subGetResetMessage(
+            //
+        ) {
+            this.strMessage = "";
+        },
+
+        //--------------------------------------------------------------------------------
         async subGetAllActiveTutors(
             //
         ) {
