@@ -12,7 +12,7 @@
     User registration completed succesfully
   </PopupSuccess>
   <div>
-    <h2>User Register</h2>
+    <h2>Sign Up</h2>
     <div class="">
       <h3 class="p-ub">Choose one:</h3>
       <div class="register-options">
@@ -25,7 +25,7 @@
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" 
-            value="teacher" v-model="strUserSelected">
+            value="teacher" v-model="strUserSelected" v-on:change="subResetIdnumber">
           <label class="form-check-label" for="flexRadioDefault2">
             Teacher
           </label>
@@ -51,7 +51,7 @@
 
           <div class="middle">
             <label class="label-text" for="nmcta-new"> 
-              {{  (this.strUserSelected === "student" ? "Accoun Number:" : "Employee ID") }}
+              {{  (this.strUserSelected === "student" ? "Account Number:" : "Employee ID") }}
             </label>
             <input type="text" name="nmcta-new" id="nmcta-new" placeholder="Ex: 1110038" 
               maxlength="7" v-model="objNewUser.strNmCta" v-if="this.strUserSelected === 'student'" 
@@ -62,7 +62,7 @@
 
             <label class="label-text" for="orgacd-new">Academic Entity:</label>
             <select name="orgacd-new" id="orgacd-new" v-if="studentStore.arrAcademicEntities != []" 
-              v-model="objNewUser.intPkAcademy" v-on:change="subOnChangeSelect"
+              v-model="objNewUser.intPkAcademy" v-on:change="subReset"
               required
             >
               <option value="" disabled>Choose one...</option>
@@ -78,11 +78,11 @@
             </select>
           </div>
 
-          <div class="bottom" v-if="objNewUser.intPkAcademy">  
+          <div class="bottom" v-if="objNewUser.intPkAcademy" v-show="!boolCheckUni()">  
             <div class="register-options">
               <div class="form-check" v-if="boolCheckUni()">
                 <input class="form-check-input" type="radio" id="prepa" name="prepa" value="Preparatoria" 
-                v-model="strBachelorDegree">
+                v-model="strBachelorDegree" v-bind:checked="boolCheckUni()">
                 <label class="form-check-label" for="prepa">High School</label><br>
               </div>
               <div class="register-options" v-else>
@@ -261,17 +261,46 @@ export default {
     },
 
     //------------------------------------------------------------------------------------
-    subOnChangeSelect(){
-      this.objNewUser.strBachelors = ""
-    }
+    subReset(
+      //
+    ){
+      if(
+        this.boolCheckUni()
+      ){
+        // Do nothing
+      }
+      else
+      {
+        this.objNewUser.strBachelors = ""
+      }
+    },
+
+    //------------------------------------------------------------------------------------
+    subResetIdnumber(
+      //
+    ){
+      if(
+        this.strUserSelected === "teacher"
+      ){
+        if(
+          this.objNewUser.strNmCta &&
+          this.objNewUser.strNmCta.length > 5
+        ){
+          // let test = this.objNewUser.strNmCta.slice(0,5);
+          this.objNewUser.strNmCta = ""
+        }
+      }
+    },
 
     //------------------------------------------------------------------------------------
 
 
   },
+  //------------------------------------------------------------------------------------
   async created(){
     this.getAcademicEntities();
   }
+  //------------------------------------------------------------------------------------
 }
 </script>
 

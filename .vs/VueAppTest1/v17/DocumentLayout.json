@@ -102,8 +102,7 @@
               "RelativeToolTip": "VueAppTest1.Server\\Controllers\\StudentController.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAYwD4AAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T05:15:42.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-15T05:15:42.464Z"
             },
             {
               "$type": "Document",
@@ -115,8 +114,7 @@
               "RelativeToolTip": "VueAppTest1.Server\\Models\\AcademicEntity.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T05:13:34.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-15T05:13:34.287Z"
             },
             {
               "$type": "Document",
@@ -128,8 +126,7 @@
               "RelativeToolTip": "VueAppTest1.Server\\Support\\AcentAcademicEntity.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAQwCgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T01:55:16.093Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-15T01:55:16.093Z"
             },
             {
               "$type": "Document",
@@ -141,8 +138,7 @@
               "RelativeToolTip": "VueAppTest1.Server\\DAO\\Interfaces\\AcenAcademicEntityInterface.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAgAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T01:55:02.11Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-15T01:55:02.11Z"
             },
             {
               "$type": "Document",
@@ -154,8 +150,7 @@
               "RelativeToolTip": "VueAppTest1.Server\\DAO\\AcaendaoAcademicEntityDao.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAawBYAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-15T01:54:55.447Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-15T01:54:55.447Z"
             },
             {
               "$type": "Document",
@@ -167,8 +162,7 @@
               "RelativeToolTip": "vueapptest1.client\\src\\views\\Admin\\TutorView.vue",
               "ViewState": "AgIAAPMAAAAAAAAAAAAAAPYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003491|",
-              "WhenOpened": "2024-09-13T03:45:51.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-13T03:45:51.214Z"
             },
             {
               "$type": "Document",
@@ -205,8 +199,7 @@
               "RelativeToolTip": "VueAppTest1.Server\\Support\\StuStudent.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAEwBEAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-11T02:12:28.636Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-11T02:12:28.636Z"
             },
             {
               "$type": "Document",
@@ -312,7 +305,7 @@
               "RelativeDocumentMoniker": "VueAppTest1.Server\\Controllers\\MaterialController.cs",
               "ToolTip": "C:\\Users\\ferna\\OneDrive\\Documentos\\GitProjects\\VueAppTest1\\VueAppTest1.Server\\Controllers\\MaterialController.cs",
               "RelativeToolTip": "VueAppTest1.Server\\Controllers\\MaterialController.cs",
-              "ViewState": "AgIAAEMAAAAAAAAAAAAvwE0AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-09T03:59:17.877Z",
               "EditorCaption": ""
