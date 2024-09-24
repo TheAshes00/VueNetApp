@@ -12,7 +12,7 @@
     User registration completed succesfully
   </PopupSuccess>
   <div>
-    <h2>Sign Up</h2>
+    <h2>User Registration</h2>
     <div class="">
       <h3 class="p-ub">Choose one:</h3>
       <div class="register-options">
@@ -79,6 +79,9 @@
           </div>
 
           <div class="bottom" v-if="objNewUser.intPkAcademy" v-show="!boolCheckUni()">  
+            <div class="button-align pad-8 label-color">
+              Academic Degree
+            </div>
             <div class="register-options">
               <div class="form-check" v-if="boolCheckUni()">
                 <input class="form-check-input" type="radio" id="prepa" name="prepa" value="Preparatoria" 
@@ -89,7 +92,7 @@
                 <div class="form-check">
                   <input class="form-check-input" type="radio" id="licenciatura" name="licenciatura" value="lic" 
                   v-model="strBachelorDegree">
-                  <label class="form-check-label" for="licenciatura">Bachelors</label><br>
+                  <label class="form-check-label" for="licenciatura">Bachelors </label><br>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="radio" id="maestria" name="licenciatura" value="ma" 
@@ -121,7 +124,7 @@
 
           <div class="form-half-input" 
             v-else>
-            <label for="mas-nombre">{{ !boolCheckUni() ? 'Which one:' : '' }}</label>
+            <label for="mas-nombre">{{ !boolCheckUni() ? 'Specify:' : '' }}</label>
             <input type="text" id="mas-nombre" v-model.lazy="objNewUser.strBachelors" 
               required :disabled="boolCheckUni()"
             >
@@ -129,7 +132,7 @@
         </div>
         <div class="button-container button-align">
           <button type="submit" class="color-button shadow-box button-align" v-if="!boolLoading">
-            Register
+            Sign Up
           </button>
           <LoaderComponent v-else/>
         </div>

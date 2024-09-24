@@ -334,6 +334,14 @@ a,
 }
 
 
+.label-color{
+  color: #f0efef;;
+  display: block;
+  font-size: 1em;
+  font-weight: 500;
+  margin: 0 0 1em 0;
+}
+
 /* Paddings */
 .pad-8{
   padding: 8px;

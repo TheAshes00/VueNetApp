@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -176,6 +177,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
+        [Authorize]
         [HttpGet("[action]")]
         public IActionResult GetStudentReport(
             [FromQuery]
@@ -183,7 +185,7 @@ namespace VueAppTest1Back.Controllers
             [FromQuery]
             DateTime dateStart,
             [FromQuery]
-            DateTime? datenEnd
+            DateTime? dateEnd
             )
         {
             CaafiContext context = new CaafiContext();
@@ -199,7 +201,7 @@ namespace VueAppTest1Back.Controllers
             }
             else
             {
-                AdmAdmin.subGetstudentReport(context,strNmCta,dateStart, datenEnd, 
+                AdmAdmin.subGetstudentReport(context,strNmCta,dateStart, dateEnd, 
                     out servans);
             }
 
@@ -208,6 +210,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
+        [Authorize]
         [HttpGet("[action]")]
         public IActionResult GetTutorReport(
             [FromQuery]

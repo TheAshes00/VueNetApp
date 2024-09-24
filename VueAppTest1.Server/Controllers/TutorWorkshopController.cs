@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VueAppTest1Back.Context;
 using VueAppTest1Back.DTO;
@@ -24,7 +25,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult SetTutorWorkshop(
             [FromBody]
@@ -74,7 +75,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult UpdateTutorWorkshop(
             [FromBody]
@@ -124,7 +125,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpGet("[action]")]
         public IActionResult GetPaginatedTutorWorkshops(
             [FromQuery]

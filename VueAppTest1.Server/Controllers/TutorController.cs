@@ -29,7 +29,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult SetTutor(
             [FromBody]
@@ -78,7 +78,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult UpdateTutor(
             [FromBody]
@@ -126,7 +126,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpGet("[action]")]
         public IActionResult GetPaginatedTutors(
             [FromQuery]

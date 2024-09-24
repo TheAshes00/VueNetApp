@@ -358,7 +358,7 @@ export default {
                 <option value="5" selected disabled>5</option>
             </select>
         </div>
-        <div>
+        <div class="search-form-responsive">
             <form v-on:submit.prevent="subSearchTutorWorkshop">
                 <div v-if="boolSearchDone">
                     <button type="button" class="cancel button-align" v-on:click="subRealoadTutorWorkshop">
@@ -376,7 +376,7 @@ export default {
                     <div class="center-box">
                         <input name="search" id="search" type="text" class="search-input" v-model="strSearch" required>
 
-                        <button type="submit" class="border-button button-align search-button">
+                        <button type="submit" class="search-button-responsive border-button button-align search-button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                             </svg>
@@ -388,7 +388,7 @@ export default {
         </div>
     </div>
     <div class="">
-        <div class="table-responsive-sm">
+        <div class="table-responsive-sm mt-2">
             <LoaderComponent v-if="boolIsLoading" />
             <table class="table align-middle table-color" v-else>
                 <thead>
@@ -408,7 +408,7 @@ export default {
                         <th>
                             Status
                         </th>
-                        <th class="d-flex justify-content-center">
+                        <th>
                             Actions
                         </th>
                     </tr>
@@ -442,15 +442,15 @@ export default {
                     </tr>
                 </tbody>
             </table>
-            <div class="pagination">
-                <button @click="changePage(intPageNumber - 1)" :disabled="intPageNumber === 1">
-                    Prev
-                </button>
-                <span>{{ intPageNumber }} / {{ intTotalPages }}</span>
-                <button @click="changePage(intPageNumber + 1)" :disabled="intPageNumber === intTotalPages">
-                    Next
-                </button>
-            </div>
+        </div>
+        <div class="pagination">
+            <button @click="changePage(intPageNumber - 1)" :disabled="intPageNumber === 1">
+                Prev
+            </button>
+            <span>{{ intPageNumber }} / {{ intTotalPages }}</span>
+            <button @click="changePage(intPageNumber + 1)" :disabled="intPageNumber === intTotalPages">
+                Next
+            </button>
         </div>
     </div>
 
@@ -594,4 +594,20 @@ input:checked + .slider:before {
 
 }
 
+@media screen and (max-width: 990px) {
+    .table-responsive-sm{
+        max-height: 250px;
+        overflow-y: scroll;
+    }
+}
+
+@media screen and (max-width: 480px){
+    /* .search-form-responsive{
+        width: 100%;
+    } */
+
+    .search-button-responsive{
+        width: 38px;
+    }
+}
 </style>

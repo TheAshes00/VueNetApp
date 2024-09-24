@@ -112,7 +112,7 @@ export default {
 .popup-inner{
     background: #c97981f5;
     padding: 32px;
-    height: 210px;
+    height: 270px;
     width: 270px;
     border-top: 24px solid #be1e2dc4;
     border-radius: 8px;

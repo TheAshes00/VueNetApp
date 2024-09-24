@@ -1,4 +1,5 @@
 import axios from "axios";
+import support from "./support";
 const strApiUrl = import.meta.env.VITE_API_URL;
 
 export default {
@@ -11,7 +12,7 @@ export default {
             "&intPageSize="+ objPages_I.intPageSize 
             +"&strSearch="+ (objPages_I.strSearch == null ? "" : objPages_I.strSearch);
 
-        let objApiResponse = await axios.get(strUrl);
+        let objApiResponse = await axios.get(strUrl, support.strGetToken());
 
         let objWorkshops = null;
         if(
@@ -36,8 +37,11 @@ export default {
             intStatus : 400,
             strUserMessage : ""
         };
-        try{
-            let objApiResponse = await axios.post(strUrl,objTutorWorkshop_I);
+        try {
+            let objApiResponse = await axios.post(
+                strUrl, 
+                objTutorWorkshop_I, 
+                support.strGetToken());
 
             if(
                 objApiResponse.data.intStatus == 200
@@ -65,7 +69,7 @@ export default {
     ){
         let strUrl = strApiUrl +"/TutorWorkshop/GetWorkshopTutor/"+intPkWorkshop_I;
 
-        let objApiResponse = await axios.get(strUrl);
+        let objApiResponse = await axios.get(strUrl, support.strGetToken());
 
         return objApiResponse.data
     },

@@ -5,6 +5,7 @@
         public class Out
         {
             public string strStudentName { get; set; }
+            public string strCourse { get; set; }
             public LoanReport[] arrLoanReport { get; set; }
             public WorkshopReport[] arrWorkshopReport { get; set; }
             public class LoanReport

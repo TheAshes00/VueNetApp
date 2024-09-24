@@ -65,9 +65,10 @@ export default {
             else if (
                 this.strUsedByComponent == 'Activities-Workshop'
             ){
+                this.$router.push('/')
                 this.studentStore.$reset(); 
                 this.adminStore.$reset();
-                this.$router.push('/')
+                console.log("reset")
             }
         },
 

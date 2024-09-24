@@ -373,7 +373,7 @@ export default {
                             Name
                         </th>
                         <th>
-                            Marerial Type
+                            Material Type
                         </th>
                         <th>
                             Code Type

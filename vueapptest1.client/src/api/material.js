@@ -1,5 +1,15 @@
 import axios from "axios";
+import support from "./support";
 const strApiUrl = import.meta.env.VITE_API_URL;
+// const strToken = sessionStorage.getItem("authToken");
+// const config = {
+//     headers: {
+//         Authorization: `Bearer ${strToken}`,
+//         "Content-Type": "application/json",
+//     },
+// };
+
+
 
 export default {
     //------------------------------------------------------------------------------------
@@ -39,10 +49,11 @@ export default {
             +"intPageNumber=" + objPages_I.intPageNumber +
             "&intPageSize="+ objPages_I.intPageSize 
             +"&strSearch="+ (objPages_I.strSearch == null ? "" : objPages_I.strSearch);
-
-        let objApiResponse = await axios.get(strUrl);
+        
+        let objApiResponse = await axios.get(strUrl, support.strGetToken());
 
         let objWorkshops = null;
+
         if(
             objApiResponse.data.intStatus == 200
         ) {
@@ -68,7 +79,11 @@ export default {
             strUserMessage : ""
         };
         try{
-            let objApiResponse = await axios.post(strUrl,objMaterial_I);
+            let objApiResponse = await axios.post(
+                strUrl,
+                objMaterial_I,
+                support.strGetToken()
+            );
 
             if(
                 objApiResponse.data.intStatus == 200

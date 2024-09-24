@@ -79,7 +79,7 @@ export const  useAdminStore = defineStore('admin',{
                 this.boolAdminLoginError = false;
                 this.boolShowAdminLoginError = false;
                 this.strUserName = "";
-                sessionStorage.setItem('strToken', objResponse.token)
+                sessionStorage.setItem('authToken', objResponse.objResponse.token)
             }
             else
             {
@@ -320,7 +320,7 @@ export const  useAdminStore = defineStore('admin',{
                 objResponse.strDevMessage === "not-found"
             ) {
                 this.arrobjTutor = []
-                this.strMessage = "NO available tutor for this specific hour"
+                this.strMessage = "No tutor available at this specific time"
                 this.boolActivateMessage = true
             }
             else if(
@@ -336,7 +336,7 @@ export const  useAdminStore = defineStore('admin',{
                 objResponse.strDevMessage === "over-limit-time"
             ) {
                 this.arrobjTutor = objResponse.objResponse
-                this.strMessage = "15 minutes allowance finish, no more registers"
+                this.strMessage = "Workshop registration closed"
                 this.boolActivateMessage = false
             }
             else
@@ -413,6 +413,10 @@ export const  useAdminStore = defineStore('admin',{
             this.boolShowStudentReportError = boolShowStudentReportError_I;
         },
 
+        //--------------------------------------------------------------------------------
+        subResetToken(){
+            admin.subResetToken();
+        }
         //--------------------------------------------------------------------------------
     }
 

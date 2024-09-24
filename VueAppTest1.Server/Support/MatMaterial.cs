@@ -103,8 +103,8 @@ namespace VueAppTest1Back.Support
                     objMat => objMat.strNumCtrlInt)
                 ).ToArray();
 
-            string strUserMessage = String.Format("The following IDs where not found [{0}]. " +
-                "Make sure that you typed it correctly",
+            string strUserMessage = String.Format("The following material codes were not found [{0}]. " +
+                "Make sure you typed them correctly.",
                 string.Join(", ", arrstrDistinctElements)
                 );
 
@@ -126,8 +126,8 @@ namespace VueAppTest1Back.Support
                 .Select(objMaterial => objMaterial.strNumCtrlInt)
                 .ToArray();
 
-            string strUserMessage = String.Format("The following IDs were deactivated [{0}]. " +
-                "Inform the manager and wait for help.",
+            string strUserMessage = String.Format("The following material codes have been deactivated [{0}]. " +
+                "Inform the manager and wait for further instructions",
                 string.Join(", ", arrstrNoActiveElements)
                 );
 

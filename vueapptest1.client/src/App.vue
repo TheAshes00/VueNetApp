@@ -9,7 +9,13 @@
 </template>
 
 <script>
+import { useAdminStore } from './stores/admin';
+
 export default {
+  setup(){
+    const adminStore = useAdminStore();
+    return { adminStore }
+  },
   data(){
     return{
       objStyle: {
@@ -20,6 +26,9 @@ export default {
         'padding': '0 2em',
       }
     }
+  },
+  created() {
+    this.adminStore.subResetToken()
   }
 }
 </script>

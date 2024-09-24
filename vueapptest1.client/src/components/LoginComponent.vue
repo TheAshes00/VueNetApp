@@ -138,7 +138,7 @@ export default {
                             <span class="nmcta-color ">Account number</span> 
                             in case of being <span class="nmcta-color"> student.</span><br>
                             <span class="nmemp-color">Employee ID</span>
-                            in case of beaing <span class="nmemp-color"> teacher/ UNI staff </span><br>
+                            in case of being <span class="nmemp-color">professor/university staff </span><br>
                         </p>
                     </div>
                 </Transition>

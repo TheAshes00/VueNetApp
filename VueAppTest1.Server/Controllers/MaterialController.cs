@@ -4,6 +4,7 @@ using VueAppTest1Back.DTO.Material;
 using VueAppTest1Back.DTO;
 using VueAppTest1Back.Support;
 using VueAppTest1.Server.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace VueAppTest1Back.Controllers
 {
@@ -40,6 +41,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
+        [Authorize]
         [HttpGet("[action]")]
         public IActionResult GetPaginatedMaterial(
             [FromQuery]
@@ -69,7 +71,7 @@ namespace VueAppTest1Back.Controllers
 
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult UpdateMaterial(
             [FromBody]
@@ -116,6 +118,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult SetMaterial(
             [FromBody]

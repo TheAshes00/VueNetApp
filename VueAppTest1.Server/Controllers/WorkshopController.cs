@@ -32,7 +32,7 @@ namespace VueAppTest1Back.Controllers
         }
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult SetWorkshop(
             GetSetWorkshopDto.In getworkshop
@@ -65,7 +65,7 @@ namespace VueAppTest1Back.Controllers
 
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpGet("[action]")]
         public IActionResult GetPaginatedWorkshops(
             [FromQuery]
@@ -95,7 +95,7 @@ namespace VueAppTest1Back.Controllers
 
 
         //--------------------------------------------------------------------------------
-        //[Authorize]
+        [Authorize]
         [HttpPost("[action]")]
         public IActionResult UpdateWorkshop(
             [FromBody]

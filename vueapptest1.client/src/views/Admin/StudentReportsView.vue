@@ -67,12 +67,12 @@ export default {
         <form class="table-options" v-on:submit.prevent="subGetStudentReport">
             <div>
                 <label for="student-id">Identification #:</label>
-                <input type="text" id="student-id" name="student-id" v-model="objReportInfo.strNmCta">
+                <input type="text" id="student-id" name="student-id" v-model="objReportInfo.strNmCta" required>
             </div>
 
             <div>
                 <label for="date-start">From:</label>
-                <input type="date"  id="date-start" name="date-start" v-model="objReportInfo.dateStart">
+                <input type="date"  id="date-start" name="date-start" v-model="objReportInfo.dateStart" required>
             </div>
             
             <div>
@@ -93,103 +93,131 @@ export default {
         </form>
     </div>
     
-    <div v-if="adminStore.objStudentReport != null">
-        <label for="student-name">Student</label>
-        <input type="text" id="student-name" name="student-name" :value="adminStore.objStudentReport.strStudentName" disabled>
+    <div class="student-info" v-if="adminStore.objStudentReport != null">
+        <div>
+            <label for="student-name">Student</label>
+            <input type="text" id="student-name" name="student-name" 
+                :value="adminStore.objStudentReport.strStudentName" 
+                disabled>
+        </div>
+
+        <div>
+            <label for="student-course">Course</label>
+            <input type="text" id="student-course" name="student-course" 
+            :value="adminStore.objStudentReport.strCourse" 
+            disabled>
+        </div>
     </div>
 
-    <h6 class="center-box" v-if="boolSearch">
-        Material Loan Report
-    </h6>
+    <div class="tables-container">
+        <div>
+            <h6 class="center-box" v-if="boolSearch">
+                Material Loan Report
+            </h6>
 
-    <div>
-        <div class=""  v-if="boolSearch && 
-            adminStore.objStudentReport != null && adminStore.objStudentReport.arrLoanReport != null"
-        >
-            <div class="container-fluid grid-material" id="material-list">
-                <div class="row row-color">
-                    <div class="col-sm-3 col-md-3">
-                        Date
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                        Hour
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        Material
+            <div>
+                <div class=""  v-if="boolSearch && 
+                    adminStore.objStudentReport != null && adminStore.objStudentReport.arrLoanReport != null"
+                >
+                    <div class="container-fluid grid-material" id="material-list">
+                        <div class="row row-color">
+                            <div class="col-sm-4 col-md-4">
+                                Date
+                            </div>
+                            <div class="col-sm-2 col-md-2">
+                                Hour
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                Material
+                            </div>
+                        </div>
+                        <div class="row pad-8 align-items-center" 
+                            v-for="(objLoanReport,index) in adminStore.objStudentReport.arrLoanReport" 
+                            :key="objLoanReport.strDate+index+objLoanReport.strHour"
+                        >
+                            <div class="col-sm-4 col-md-4">
+                                {{ objLoanReport.strDate }}
+                            </div>
+                            <div class="col-sm-2 col-md-2">
+                                {{ objLoanReport.strHour }}
+                            </div>
+                            <div class="col-sm-6 col-md-6">
+                                <div class="row" v-for="(strMaterial,index) in objLoanReport.arrstrMaterial" 
+                                    :key="strMaterial+index">
+                                    {{ strMaterial }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="row pad-8 align-items-center" 
-                    v-for="(objLoanReport,index) in adminStore.objStudentReport.arrLoanReport" 
-                    :key="objLoanReport.strDate+index+objLoanReport.strHour"
-                >
-                    <div class="col-sm-3 col-md-3">
-                        {{ objLoanReport.strDate }}
+                <div v-else-if="boolSearch && adminStore.objStudentReport.arrLoanReport == null">
+                    No material loans found in the specified period of time
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h6 class="center-box" v-if="boolSearch">
+                Workshop Attendance Report
+            </h6>
+            <div class="" v-if="boolSearch && adminStore.objStudentReport != null && adminStore.objStudentReport.arrWorkshopReport != null">
+                <div class="container-fluid grid-material" id="material-list">
+                    <div class="row row-color">
+                        <div class="col-sm-4 col-md-4">
+                            Date
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            Hour
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            Workshop Name
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            Tutor Name 
+                        </div>
                     </div>
-                    <div class="col-sm-3 col-md-3">
-                        {{ objLoanReport.strHour }}
-                    </div>
-                    <div class="col-sm-6 col-md-6">
-                        <div class="row" v-for="(strMaterial,index) in objLoanReport.arrstrMaterial" 
-                            :key="strMaterial+index">
-                            {{ strMaterial }}
+                    <div class="row pad-8 align-items-center" 
+                        v-for="(objWorkshopReport,index) in adminStore.objStudentReport.arrWorkshopReport"
+                        :key="objWorkshopReport.strDate+index+objWorkshopReport.strHour" 
+                    >
+                        <div class="col-sm-4 col-md-4">
+                            {{objWorkshopReport.strDate}}
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                            {{objWorkshopReport.strHour}}
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            {{ objWorkshopReport.strWorkshopName }}
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            {{ objWorkshopReport.strTutorName }}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div v-else-if="boolSearch && adminStore.objStudentReport.arrLoanReport == null">
-            No material loans found in the specified period of time
+            <div v-else-if="boolSearch && adminStore.objStudentReport?.arrWorkshopReport == null">
+                No workshop attendance found in the specified period of time
+            </div>
         </div>
     </div>
 
-    <h6 class="center-box" v-if="boolSearch">
-        Workshop attendance report
-    </h6>
-    <div class="" v-if="boolSearch && adminStore.objStudentReport != null && adminStore.objStudentReport.arrWorkshopReport != null">
-        <div class="container-fluid grid-material" id="material-list">
-            <div class="row row-color">
-                <div class="col-sm-3 col-md-3">
-                    Date
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    Hour
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    Workshop Name
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    Tutor Name 
-                </div>
-            </div>
-            <div class="row pad-8 align-items-center" 
-                v-for="(objWorkshopReport,index) in adminStore.objStudentReport.arrWorkshopReport"
-                :key="objWorkshopReport.strDate+index+objWorkshopReport.strHour" 
-            >
-                <div class="col-sm-3 col-md-3">
-                    {{objWorkshopReport.strDate}}
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    {{objWorkshopReport.strHour}}
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    {{ objWorkshopReport.strWorkshopName }}
-                </div>
-                <div class="col-sm-3 col-md-3">
-                    {{ objWorkshopReport.strTutorName }}
-                </div>
-            </div>
-        </div>
-    </div>
-    <div v-else-if="boolSearch && adminStore.objStudentReport?.arrWorkshopReport == null">
-        No workshop attendance found in the specified period of time
-    </div>
 </template>
 
 <style scoped>
+.row{
+    padding: 4px 12px;
+}
+.tables-container{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 12px;
+    margin-top: 12px;
+}
 .container-fluid{
     border: 1px white solid;
-    border-radius: 20px;
+    border-radius: 10px;
     color: whitesmoke;
+    width: 100%;
 }
 .table-options{
     display: flex;
@@ -212,8 +240,8 @@ export default {
     color: #c7ffc2;
 }
 
-    #material-list{
-        max-height: 100px;
-    }
-
+.student-info{
+    display: flex;
+    gap: 14px;
+}
 </style>

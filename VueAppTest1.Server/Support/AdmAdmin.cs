@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Globalization;
 using System.Linq;
 using VueAppTest1Back.Context;
@@ -114,11 +115,11 @@ namespace VueAppTest1Back.Support
             {
 
                 Student? studentWithLoansAndWorkshop = stuGetStudentWithIncludes(
-                    context_I, strNumCta_I, dateStart_I, dateTime);
+                    context_I, strNumCta_I);
 
                 GetrepbystuGetReportByStudent.Out getrepstuout = 
                     studentWithLoansAndWorkshop != null ? 
-                    getrepbustuGetReportObject(studentWithLoansAndWorkshop) :
+                    getrepbustuGetReportObject(studentWithLoansAndWorkshop, dateStart_I, dateTime) :
                     getrepbustuNoReports(context_I,strNumCta_I);
 
                 servans_O = new(200, getrepstuout);
@@ -137,13 +138,16 @@ namespace VueAppTest1Back.Support
 
             GetrepbystuGetReportByStudent.Out getrepbustu = new();
             getrepbustu.strStudentName = stuentity.strName + " " + stuentity.strSurename;
+            getrepbustu.strCourse = stuentity.strBachelors;
 
             return getrepbustu;
         }
 
         //--------------------------------------------------------------------------------
         private static GetrepbystuGetReportByStudent.Out getrepbustuGetReportObject(
-            Student studentWithLoansAndWorkshop_I
+            Student studentWithLoansAndWorkshop_I,
+            DateTime dateStart_I, 
+            DateTime dateTimeEnd_I
             )
         {
             return new GetrepbystuGetReportByStudent.Out()
@@ -151,11 +155,13 @@ namespace VueAppTest1Back.Support
                 strStudentName =
                         studentWithLoansAndWorkshop_I.strName + " " +
                         studentWithLoansAndWorkshop_I.strSurename,
+                strCourse = studentWithLoansAndWorkshop_I.strBachelors,
                 arrLoanReport = studentWithLoansAndWorkshop_I.IcLoanEntity
+                    .Where(l => l.LoanDate >= dateStart_I && l.LoanDate <= dateTimeEnd_I)
                     .Select(loan => new GetrepbystuGetReportByStudent.Out.LoanReport
                     {
                         strDate = loan.LoanDate.ToString("dd-MM-yyyy"),
-                        strHour = loan.TimeStart.ToString(),
+                        strHour = loan.TimeStart.ToString(@"hh\:mm"),
                         arrstrMaterial = loan.IcMaterialLoanEntity
                         .Select(matloa => matloa.MaterialEntity.strName)
                         .ToArray()  // Convierte a array después de recorrer todos
@@ -179,32 +185,21 @@ namespace VueAppTest1Back.Support
         //--------------------------------------------------------------------------------
         private static Student? stuGetStudentWithIncludes(
             CaafiContext context_I,
-            string strNumCta_I,
-            DateTime DateStart_I,
-            DateTime DateEnds_I
+            string strNumCta_I
             )
         {
             return context_I.Student
-                .Where(s => s.strNmCta == strNumCta_I &&
-                            (s.IcWorkshopAttendanceEntity.Any(wa =>
-                                wa.DateWorkshopDate >= DateStart_I &&
-                                wa.DateWorkshopDate <= DateEnds_I)
-                            || s.IcLoanEntity.Any(l =>
-                                l.LoanDate >= DateStart_I &&
-                                l.LoanDate <= DateEnds_I)
-                            )
-                )
-                .Include(s => s.IcWorkshopAttendanceEntity )
-                    .ThenInclude(wa => wa.TutorWorkshopEntity)
-                        .ThenInclude(z => z.WorkshopEntity)
                 .Include(s => s.IcWorkshopAttendanceEntity)
-                    .ThenInclude(s => s.TutorWorkshopEntity)
-                        .ThenInclude(s => s.TutorEntity)
+                    .ThenInclude(wa => wa.TutorWorkshopEntity)
+                        .ThenInclude(tw => tw.WorkshopEntity)
+                .Include(s => s.IcWorkshopAttendanceEntity)
+                    .ThenInclude(wa => wa.TutorWorkshopEntity)
+                        .ThenInclude(tw => tw.TutorEntity)
                 .Include(s => s.IcLoanEntity)
                     .ThenInclude(l => l.IcMaterialLoanEntity)
                         .ThenInclude(ml => ml.MaterialEntity)
+                .Where( s => s.strNmCta == strNumCta_I )
                 .FirstOrDefault();
-            
         }
 
         //--------------------------------------------------------------------------------

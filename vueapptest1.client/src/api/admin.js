@@ -1,4 +1,5 @@
 import axios from "axios"
+import support from "./support";
 const strApiUrl = import.meta.env.VITE_API_URL;
 
 export default {
@@ -58,7 +59,7 @@ export default {
             "&intPageSize="+ objPages_I.intPageSize 
             +"&strSearch="+ (objPages_I.strSearch == null ? "" : objPages_I.strSearch);
 
-        let objApiResponse = await axios.get(strUrl);
+        let objApiResponse = await axios.get(strUrl, support.strGetToken());
 
         let objWorkshops = null;
         if(
@@ -82,7 +83,11 @@ export default {
             strUserMessage : ""
         };
         try{
-            let objApiResponse = await axios.post(strUrl,objWorkshop_I);
+            let objApiResponse = await axios.post(
+                strUrl, 
+                objWorkshop_I, 
+                support.strGetToken()
+            );
 
             if(
                 objApiResponse.data.intStatus == 200
@@ -129,7 +134,7 @@ export default {
             objReportInfo_I.strNmCta +"&dateStart="+objReportInfo_I.dateStart +
             "&dateEnd="+objReportInfo_I.dateEnd;
 
-        let objApiResponse = await axios.get(strUrl);
+        let objApiResponse = await axios.get(strUrl, support.strGetToken());
 
         let objResponse = null;
 
@@ -150,7 +155,7 @@ export default {
             objReportInfo_I.intPkTutor +"&dateStart="+objReportInfo_I.dateStart +
             "&dateEnd="+objReportInfo_I.dateEnd;
 
-        let objApiResponse = await axios.get(strUrl);
+        let objApiResponse = await axios.get(strUrl, support.strGetToken());
 
         let objResponse = null;
 
@@ -161,6 +166,11 @@ export default {
         }
 
         return objResponse;
+    },
+
+    //--------------------------------------------------------------------------------
+    subResetToken(){
+        support.subResetToken();
     }
 
     //--------------------------------------------------------------------------------
